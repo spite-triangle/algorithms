@@ -1,4 +1,4 @@
-
+# 队列与栈
 import random
 
 class CustomQueue:
