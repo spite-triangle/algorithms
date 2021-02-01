@@ -60,3 +60,5 @@
 * 漫水填充：[floodfill](floodFill/floodFill.py)
 
     基于 *深度搜索*  或者 *广度搜索*
+
+* 图 的遍历：[depth first search](graph_search/depth_first_search.py); [breadth first search](graph_search/breadth_first_search.py)
