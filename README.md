@@ -62,3 +62,11 @@
     基于 *深度搜索*  或者 *广度搜索*
 
 * 图 的遍历：[depth first search](graph_search/depth_first_search.py); [breadth first search](graph_search/breadth_first_search.py)
+
+## 《大话数据结构》
+* 链表栈：[link stack](stack/LinkStack.py)
+* 四则表达式运算：[四则表达式运算](example/calculator.py)
+
+    1) 中缀表达式转后缀表达式
+        ![suffix](image/suffixExpression.png)
+    2) 后缀表达式运算
