@@ -63,6 +63,39 @@
 
 * 图 的遍历：[depth first search](graph_search/depth_first_search.py); [breadth first search](graph_search/breadth_first_search.py)
 
+## 《图解算法》
+* 二分法查找：只能用于查找有序的数据 [dichotomizing search](dichotomizing_search/dichotomizingSearch.py)
+```c++
+    search(int low,int high){
+        // 序列中不存在：由于low向左移动，high向右移动。所以找不到的情况就是 low > high
+        if(low > high){
+            return "not found";
+        }
+        // 中间位置: 奇数时，向下取整
+        int mid = (low + high) / 2;
+        // 小于 中间 的值
+        if(target < datas[mid]){
+            high = high - 1;
+        }
+        // 大于 中间 的值
+        if(target > datas[mid]){
+            low = low + 1;
+        }
+        // 等于 中间 的值
+        if(target == datas[mid]){
+            return mid;
+        }
+
+        // 下一次查找
+        search(low,high);
+    }
+
+```
+
+
+* 大O表示法：描述的是运算时间的增量，而非运算时间
+    ![bigO](image/bigO.png)
+
 ## 《大话数据结构》
 * 链表栈：[link stack](stack/LinkStack.py)
 * 四则表达式运算：[四则表达式运算](example/calculator.py)
