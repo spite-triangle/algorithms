@@ -113,13 +113,18 @@
     }
 ```
 
-* D&C 分而治之 的思路：
+* D&C 分而治之 的思路: ( 当下该如何做，下一步如何做则重复 --《啊哈！算法》)
 > 1. 找到问题最简单的形式，作为**基线条件**
 > 2. 找到实现问题能重复最简化的过程
 
 * 图的储存方式：
-> 1. [邻近矩阵](graph_search/breadth_first_search.py)
+> 1. [邻近矩阵](graph_search/breadth_first_search.py) 《啊哈！算法》
 > 2. [键值对](graph_search/breadthFirstSearchMap.py)
+
+* [狄克斯特拉算法](Dijkstra/Dijkstra.py)
+> 1. 书中描述错误：~~狄克斯特拉算法不能用于环向图，无向图~~
+> 2. 狄克斯特拉算法不能用于 **负边权重查询**
+> 3. 狄克斯特拉算法用于带权重图的短路径搜索
 
 ## 《大话数据结构》
 * 链表栈：[link stack](stack/LinkStack.py)
