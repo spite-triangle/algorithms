@@ -1,6 +1,21 @@
 
-## 傅里叶变
-* [算法理论](https://spite-triangle.github.io/algorithms/index.html)
+<head>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+</head>
+
+****
+[toc]
+****
+## 傅里叶变换
+* [傅里叶变换，离散傅里叶和快速傅里叶](https://spite-triangle.github.io/algorithms/fastFourier/Fourier.html)
 
 ## 《阿哈！算法》
 * 快速排序： [quick sort](quicksort/quicksort.py)
@@ -77,8 +92,8 @@
 >       2. 完全二叉树：叶节点的深度都是h；叶节点的右边补上几个节点才能形成满二叉树
 >       3. 满二叉树与完全二叉树特点：
 >           1. 父节点的编号为k，子左节点编号为2k，子右节点的编号为2k+1
->           2. 子节点的编号为x，父节点的编号为$\floor{x/2}$
->           3. 从上往下最后一个父节点的编号为$\floor{n/2},n总节点数$
+>           2. 子节点的编号为x，父节点的编号为$\lfloor x/2 \rfloor$
+>           3. 从上往下最后一个父节点的编号为$\lfloor n/2 \rfloor,n总节点数$
 
 * [堆](tree/heap.py)：数据存储为完全二叉树；根节点为最大值或最小值。
 > 1. 存储数据使用 list 容器，代替数组。方便动态删除和扩充
