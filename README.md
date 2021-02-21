@@ -1,5 +1,7 @@
 <a id="forkme_banner" href="https://github.com/spite-triangle/algorithms">View on GitHub</a>
 
+<a id="forkme_banner" href="https://spite-triangle.github.io/algorithms/">View on Page</a>
+
 ****
 [toc]
 ****
