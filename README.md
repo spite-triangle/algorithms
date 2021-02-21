@@ -1,6 +1,6 @@
 
 ## 傅里叶变
-* [算法理论](fastFourier/Fourier.html)
+* [算法理论](https://spite-triangle.github.io/algorithms/)
 
 ## 《阿哈！算法》
 * 快速排序： [quick sort](quicksort/quicksort.py)
