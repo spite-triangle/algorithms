@@ -1,14 +1,6 @@
-<head>
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            tex2jax: {
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-            inlineMath: [['$','$']]
-            }
-        });
-    </script>
-</head>
+
+## 傅里叶变
+* [算法理论](fastFourier/Fourier.html)
 
 ## 《阿哈！算法》
 * 快速排序： [quick sort](quicksort/quicksort.py)
