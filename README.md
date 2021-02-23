@@ -13,60 +13,60 @@
 * 队列: [queue](queue/queue.py)
 * 栈：[stack](stack/stack.py)
 
-    可以用来处理**对称问题**
+    可以用来处理**镜像对称问题**
 
 * 链表：[link](link/link.py), [simulation link](link/simLink.py)
-* 深度搜索：[depth first search](depthfFirstSearch/depthFirstSearch.py)
-```c++
-    void search(location){
-        // 期望的结束条件
-        if(){
-            return;
-        }
+  * 深度搜索：[depth first search](depthfFirstSearch/depthFirstSearch.py)
+  ```c++
+      void search(location){
+          // 期望的结束条件
+          if(){
+              return;
+          }
 
-        // 尝试所有可能性，向后移动
-        for(){
+          // 尝试所有可能性，向后移动
+          for(){
 
-            // 移动到下一步
-            loctation = location + 1;
-            search(location);
+              // 移动到下一步
+              loctation = location + 1;
+              search(location);
 
-            // 从 后面 回退回来，复原状态
-            location = location - 1;
-        }
+              // 从 后面 回退回来，复原状态
+              location = location - 1;
+          }
 
-        // 隐含的结束条件：**不能向后移动时，回退**
-        return ;
-    }
-```
+          // 隐含的结束条件：**不能向后移动时，回退**
+          return ;
+      } 
+  ```
 
 * 广度搜索：[breadth first search](breadth_first_search/breadthFirstSearch.py)
-```c++
-    void search(location){
+    ```c++
+        void search(location){
 
-        // 尝试**当前点**对应的所有可能性；
-        for(){
-            // 将移动的一步入对
-            queue.push(location + 1);
+            // 尝试**当前点**对应的所有可能性；
+            for(){
+                // 将移动的一步入对
+                queue.push(location + 1);
 
-            // 找到目的时，就结束递归
-            if(){
+                // 找到目的时，就结束递归
+                if(){
+                    return;
+                }
+            }
+
+            // 将**当前点**出队
+            queue.pull();
+
+            // 队列为空。没有找到目标，结束递归
+            if(queue.head == queue.tail){
                 return;
             }
+
+            // 以队首为**起始点**继续处理
+            search(queue.head)
         }
-
-        // 将**当前点**出队
-        queue.pull();
-
-        // 队列为空。没有找到目标，结束递归
-        if(queue.head == queue.tail){
-            return;
-        }
-
-        // 以队首为**起始点**继续处理
-        search(queue.head)
-    }
-```
+    ```
 * 漫水填充：[floodfill](floodFill/floodFill.py)
 
     基于 *深度搜索*  或者 *广度搜索*
@@ -93,32 +93,32 @@
 
 ## 《图解算法》
 * 二分法查找：只能用于查找有序的数据 [dichotomizing search](dichotomizing_search/dichotomizingSearch.py)
-```c++
-    search(int low,int high){
-        // 序列中不存在：由于low向左移动，high向右移动。所以找不到的情况就是 low > high
-        if(low > high){
-            return "not found";
-        }
-        // 中间位置: 奇数时，向下取整
-        int mid = (low + high) / 2;
-        // 小于 中间 的值
-        if(target < datas[mid]){
-            high = high - 1;
-        }
-        // 大于 中间 的值
-        if(target > datas[mid]){
-            low = low + 1;
-        }
-        // 等于 中间 的值
-        if(target == datas[mid]){
-            return mid;
+    ```c++
+        search(int low,int high){
+            // 序列中不存在：由于low向左移动，high向右移动。所以找不到的情况就是 low > high
+            if(low > high){
+                return "not found";
+            }
+            // 中间位置: 奇数时，向下取整
+            int mid = (low + high) / 2;
+            // 小于 中间 的值
+            if(target < datas[mid]){
+                high = high - 1;
+            }
+            // 大于 中间 的值
+            if(target > datas[mid]){
+                low = low + 1;
+            }
+            // 等于 中间 的值
+            if(target == datas[mid]){
+                return mid;
+            }
+
+            // 下一次查找
+            search(low,high);
         }
 
-        // 下一次查找
-        search(low,high);
-    }
-
-```
+    ```
 
 * 大O表示法：描述的是运算时间的增量，而非运算时间
     ![bigO](image/bigO.png)
@@ -126,20 +126,20 @@
 > 2. 对于递归的表示：O(调用栈的高度 * 一层中的O())
 
 * 递归的一般形式: (当下该如何做，下一步如何做则重复 -- 《啊哈！算法》)
-```c++
-    T function(T input){
-        // 基线条件
-        if(){
-            return ;
-        }
+    ```c++
+        T function(T input){
+            // 基线条件
+            if(){
+                return ;
+            }
 
-        // 递归条件
-        ...
-        function(nextInput);
-        ...
-        return;
-    }
-```
+            // 递归条件
+            ...
+            function(nextInput);
+            ...
+            return;
+        }
+    ```
 
 * 图的储存方式：
 > 1. [邻近矩阵](graph_search/breadth_first_search.py) 《啊哈！算法》
@@ -183,13 +183,133 @@
 >       3. 合并问解：对分类问题的解，进行处理。
 > 3. [案列](https://leetcode-cn.com/problems/maximum-subarray/solution/dong-tai-gui-hua-fen-zhi-fa-python-dai-ma-java-dai/)
 
-
-
 ## 《大话数据结构》
+
 * 链表栈：[link stack](stack/LinkStack.py)
+
 * 四则表达式运算：[四则表达式运算](example/calculator.py)
 
     1. 中缀表达式转后缀表达式
         ![suffix](image/suffixExpression.png)
     2. 后缀表达式运算
 * 循环队列：[loop queue](queue/loopQueue.py)
+
+* 树的存储方法
+    >  **对于同一层的节点，顺序默认为从左到右**
+
+  1. 双亲表示法
+&emsp;&emsp;每一个树节点由**父节点的索引下标和数据**两部分组成；然后将所有节点存储在数组中。(还可以添加一个右兄弟索引；第一个孩子索引。)
+
+        ```c++
+            struct Node{
+                // 父亲节点的下标
+                int parent;
+                // 第一个孩子
+                int firstChild;
+                // 右边的兄弟
+                int rightBrother;
+                // 数据
+                data;
+            }
+
+            class tree{
+                // 定义树
+                Node trees[N];
+            }
+        ```
+  2. 孩子表示法
+&emsp;&emsp;把一个节点的**子节点索引**全部放一个链表里面。**父节点用数组进行存储**。
+![tree_child](image/tree_child.jpg)
+
+        ```c++
+            struct childNode{
+                //  当前孩子的下标
+                int index;
+                // 下一个孩子的指针
+                childNode * next;
+            }
+            struct Node{
+                // 数据
+                data;
+                // 父节点
+                int parentIndex;
+                // 第一个孩子
+                childNode * firstChild;
+            }
+            class tree{
+                // 树的定义
+                Node trees[N];
+            }
+        ```
+
+  3. 孩子兄弟表示法（二叉链表同理）
+&emsp;&emsp;由于同一层节点默认是从左到右排列，所以对于一个节点来说其右兄弟是唯一确定的；第一个孩子也是唯一确定的。**所有节点就使用链表进行存储。并且树也被改写成了一个二叉树的形式。**
+![tree_brother](image/tree_brother.jpg)
+
+        ```c++
+            struct Node{
+                // 数据
+                data;
+                // 第一个孩子节点
+                Node * firstChild;
+                // 右兄弟的节点
+                Node * rightBrother;
+                // 父节点
+                Node * parent;
+            }
+            class tree{
+                Node rootNode;
+            }
+        ```
+
+  4. 数组
+    完全二叉树
+
+* 二叉树的遍历：**三种遍历方式，就是处理数据的位置不同**
+    遍历的总体框架为**深度搜索法**。**以下描述中的Null表示节点遍历过或者该节点为空**
+  1. [ 前序遍历 ](tree/preorderTraversal%20.py)
+![preorderTraversal](image/preorderTraversal.jpg)
+    > 先输出当前节点；然后遍历左子节点；左子节点到底为Null后，遍历右子节点。右子节点都为Null，就回退。
+
+    ```c++
+        void traversal(Node T){
+            if(T == Null){
+                return;
+            }
+            // 遍历所有可能性
+            print(T.data);
+            traversal(T.leftChild);
+            traversal(T.rightChild);
+        }
+    ```
+  2. [ 中序遍历 ](tree/inOrderTraversal.py)
+![inOrderTraversal](image/inOrderTraversal.jpg)
+    > 先遍历左子节点；左子节点到底为Null后，然后输出当前节点；遍历右子节点。右子节点都为Null，就回退。
+
+    ```c++
+        void traversal(Node T){
+            if(T == Null){
+                return;
+            }
+            // 遍历所有可能性
+            traversal(T.leftChild);
+            print(T.data);
+            traversal(T.rightChild);
+        }
+    ```
+
+  3. [ 后序遍历 ](tree/postOrderTraversal.py)
+![postOrderTraversal](image/postOrderTraversal.jpg)
+    > 先遍历左子节点；左子节点到底为Null后；遍历右子节点，右子节点为Null后；然后输出当前节点。右子节点都为Null，就回退。
+
+    ```c++
+        void traversal(Node T){
+            if(T == Null){
+                return;
+            }
+            // 遍历所有可能性
+            traversal(T.leftChild);
+            traversal(T.rightChild);
+            print(T.data);
+        }
+    ```
