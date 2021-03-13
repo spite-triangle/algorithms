@@ -190,3 +190,5 @@ $$
 > * 后验估计值：$\hat{x}_k = \hat{x}_k^- + k_k(z_k - H\hat{x}_k^-)$
 > * 更新误差协方差：$P_{ek} = P_{ek}^- - k_k H P_{ek}^-$
 
+## 参考
+> [卡尔曼滤波器](https://www.bilibili.com/video/BV1ez4y1X7eR)
