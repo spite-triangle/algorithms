@@ -8,6 +8,9 @@
 ## 傅里叶变换
 * [傅里叶变换，离散傅里叶和快速傅里叶](https://spite-triangle.github.io/algorithms/fastFourier/Fourier.html)
 
+## 卡尔曼滤波
+* [卡尔曼滤波( Kalman Filtering )](https://spite-triangle.github.io/algorithms/KalmanFiltering/KalmanFilterin.html)
+
 ## 《阿哈！算法》
 * 快速排序： [quick sort](quicksort/quicksort.py)
 * 队列: [queue](queue/queue.py)

@@ -245,3 +245,4 @@ $$
 ## 参考
 > * [纯干货数学推导_傅里叶级数与傅里叶变换](https://www.bilibili.com/video/BV1Et411R78v)
 > * [傅立叶变换夯实基础系列视频](https://www.bilibili.com/video/BV1aT4y1J7JP/?spm_id_from=333.788.recommend_more_video.0)
+> * [ c++ 代码实现 ](https://blog.csdn.net/u013457167/article/details/84641250)
