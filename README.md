@@ -8,6 +8,9 @@
 ## 傅里叶变换
 * [傅里叶变换，离散傅里叶和快速傅里叶](https://spite-triangle.github.io/algorithms/fastFourier/Fourier.html)
 
+## 拉普拉斯变换
+* [拉普拉斯变换](https://spite-triangle.github.io/algorithms/Lapras/Lapras.html)
+
 ## 卡尔曼滤波
 * [卡尔曼滤波( Kalman Filtering )](https://spite-triangle.github.io/algorithms/KalmanFiltering/KalmanFilterin.html)
 
