@@ -14,6 +14,9 @@
 ## 卡尔曼滤波
 * [卡尔曼滤波( Kalman Filtering )](https://spite-triangle.github.io/algorithms/KalmanFiltering/KalmanFilterin.html)
 
+## 神经网络
+* [神经网络](https://spite-triangle.github.io/algorithms/neuralNetwork/neuralNetwork.html)
+
 ## 《阿哈！算法》
 * 快速排序： [quick sort](quicksort/quicksort.py)
 * 队列: [queue](queue/queue.py)

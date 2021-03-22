@@ -41,6 +41,7 @@ while(len(vertexes) < len(graph)):
     book[bestEdge[1]] = 1
     edges.append(bestEdge)
 
+
 # 输出储存的边
 for edge in edges:
     print("%d - %d : %f" % (edge[0],edge[1],edge[2]))
