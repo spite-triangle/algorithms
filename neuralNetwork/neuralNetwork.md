@@ -420,8 +420,62 @@ $$
 &emsp;&emsp;在训练的前期使用较大的学习率，在快要收敛时，使用较小的学习率。
 
 $$
-\alpha = \frac{1}{1 + delayRate * epochNum} \alpha_0
+\alpha = \frac{1}{1 + delayRate * epochNum} \alpha_0 \tag{7.1}
 $$
+
+## 八，超参数取值
+
+* 采用枚举法，在一个区间内随机试；
+* 对数标尺随机数的实现
+    &emsp;&emsp;从[0.001,1]之间的对数标尺随机数的实现：
+
+    ```python
+        r = -4 * np.randm.rand()
+        a = 10 ** r
+    ```
+
+## 九，Batch Norm
+
+### 9.1 原理
+
+&emsp;&emsp;对一个batch样本在一个神经元节点中的所有$z^{[i]}_j$进行Z标准化处理，然后再带入激活函数，求解$a^{[i]}_j$。
+
+<center>
+
+![batchnorm](../image/neuralNetwork/batchNorm.jpg)
+
+</center>
+
+$$
+\left \{
+\begin{aligned}
+    \mu &= \frac{1}{m} \sum_i z^{ (i) }, \delta^2 = \frac{1}{m} \sum_i (z^{ (i) } - \mu)^2 \\
+    z_{norm}^{(i)} &= \frac{z^{ (i) } - \mu}{\sqrt{\delta^2 + \epsilon}} \\
+    \hat{z}^{(i)} &= \gamma z_{norm}^{(i)} + \beta
+\end{aligned}
+\right . \tag{9.1}
+$$
+
+> **注意：**
+> 1. 由于对$z^{(i)}$进行了标准化处理，对于系数$b^{[i]}$将没有实质意义，可以从网络中去掉；
+> 1. 引入两个调节参数$\beta^{[i]},\gamma^{[i]}$。
+
+### 9.2 $\mu ,\delta$的获取
+
+1. 训练集：直接使用min-batch中的所有样本进行计算从而获取。
+2. 测试集：将训练集中计算得到的 $\mu^{\{i\}},\delta^{\{i\}}$进行指数平均获取到的$\mu,\delta$用于测试计算。
+
+### 9.3 covariate shift
+
+<center>
+
+![covariateShift](../image/neuralNetwork/network.jpg)
+
+![covariateShift](../image/neuralNetwork/covariateShift.jpg)
+
+</center>
+
+&emsp;&emsp;对于第3，4层神经网络而言，它们以$a^{[2]}$作为样本输入（就认为是样本定值），从而实现结果向$\hat{y}$靠拢。但是从整体网络上来看$a^{[2]}$受到了第1，2层网络的影响，是变化的。因此，对于$a^{[2]}$就存在**协变量偏移**的情况。**Batch Norm的作用就是将每一个神经元激活前的样本尽可能都保持在统一的一个分布内。**
 
 ****
 # 附录

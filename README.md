@@ -101,33 +101,64 @@
     > 3. 堆排序：一直删除root节点，更新root节点，直到堆为空，就完成排序。
 
 ## 《图解算法》
-* 二分法查找：只能用于查找有序的数据 [dichotomizing search](dichotomizing_search/dichotomizingSearch.py)
-    ```c++
-        search(int low,int high){
-            // 序列中不存在：由于low向左移动，high向右移动。所以找不到的情况就是 low > high
-            if(low > high){
-                return "not found";
-            }
-            // 中间位置: 奇数时，向下取整
-            int mid = (low + high) / 2;
-            // 小于 中间 的值
-            if(target < datas[mid]){
-                high = high - 1;
-            }
-            // 大于 中间 的值
-            if(target > datas[mid]){
-                low = low + 1;
-            }
-            // 等于 中间 的值
-            if(target == datas[mid]){
-                return mid;
+* 二分法查找：只能用于查找有序的数据 
+
+    1. 在有序序列中找到指定值: [dichotomizing search](dichotomizing_search/dichotomizingSearch.py)
+        ```c++
+            search(int low,int high){
+                // 序列中不存在：由于low向左移动，high向右移动。所以找不到的情况就是 low > high
+                if(low > high){
+                    return "not found";
+                }
+                // 中间位置: 奇数时，向下取整
+                int mid = (low + high) / 2;
+                // 小于 中间 的值
+                if(target < datas[mid]){
+                    high = high - 1;
+                }
+                // 大于 中间 的值
+                if(target > datas[mid]){
+                    low = low + 1;
+                }
+                // 等于 中间 的值
+                if(target == datas[mid]){
+                    return mid;
+                }
+
+                // 下一次查找
+                search(low,high);
             }
 
-            // 下一次查找
-            search(low,high);
-        }
+        ```
 
-    ```
+    2. 在有序序列中找到给定值的邻近区间: [dichotomizing block](dichotomizing_search/dichotomizingBlock.py)
+        ```c++
+            void findBlock(int left,int right){
+                if ((right - left) == 1)
+                {
+                    // left 对应的索引就是区间左边，right 对应的索引就是区间的右边
+                    return;
+                }
+                
+                mid = (right + left) / 2;
+
+                // 小于等于中间值
+                if (current <= datas[mid])
+                {
+                    right = mid ;
+                }
+
+                // 大于中间值
+                if (current > datas[mid])
+                {
+                    left = mid;
+                }
+
+                // 进行下一次寻找
+                findBlock(left,right);
+            }
+            
+        ```
 
 * 大O表示法：描述的是运算时间的增量，而非运算时间
     ![bigO](image/bigO.png)
