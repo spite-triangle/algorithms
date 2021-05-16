@@ -17,6 +17,9 @@
 ## 神经网络
 * [神经网络](https://spite-triangle.github.io/algorithms/neuralNetwork/neuralNetwork.html)
 
+## x86从实模型到保护模式
+* [操作系统](https://spite-triangle.github.io/algorithms/x86/x86.html)
+
 ## 《阿哈！算法》
 * 快速排序： [quick sort](quicksort/quicksort.py)
 * 队列: [queue](queue/queue.py)

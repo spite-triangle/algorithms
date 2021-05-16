@@ -516,6 +516,29 @@ $$
     J = \frac{1}{m} \sum^m_i L(\hat{y}^{(i)},y^{(i)}) \tag{10.3}
     $$    
 
+### 10.3 输出($y$)编码 
+
+1. 顺序编码
+    对于结果按照数字顺序分类。
+    $$
+    \begin{array}{c}
+        \left [ A \quad B  \quad C \quad D \right] \\ 
+        \left [ 1 \quad 2  \quad 3 \quad 4 \right] 
+    \end{array}
+    $$
+
+1. one-hot 编码
+    $$
+    \begin{array}{c}
+        A = \left [ 1 \quad 0  \quad 0 \quad 0 \right] \\
+        B = \left [ 0 \quad 1  \quad 0 \quad 0 \right] \\
+        C = \left [ 0 \quad 0  \quad 1 \quad 0 \right] \\
+        D = \left [ 0 \quad 0  \quad 0 \quad 1 \right] \\
+    \end{array}
+    $$
+
+
+
 ****
 # 附录
 ## 符号约定
