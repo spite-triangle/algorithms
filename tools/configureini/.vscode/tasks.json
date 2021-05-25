@@ -1,0 +1,27 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: cpp.exe 生成活动文件",
+			"command": "g++.exe",
+			"args": [
+				"-g",
+				"-std=c++14",
+				"${workspaceFolder}\\configini.cpp",
+				"${workspaceFolder}\\main.cpp",
+				"-o",
+				"${workspaceFolder}\\build\\main.exe",
+				"-I${workspaceFolder}",
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "编译器: \"E:\\Program Files\\mingw64\\bin\\cpp.exe\""
+		}
+	]
+}

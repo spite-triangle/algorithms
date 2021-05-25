@@ -20,6 +20,9 @@
 ## x86从实模型到保护模式
 * [操作系统](https://spite-triangle.github.io/algorithms/x86/x86.html)
 
+## 小工具
+* [工具](https://spite-triangle.github.io/algorithms/tools/tools.html)
+
 ## 《阿哈！算法》
 * 快速排序： [quick sort](quicksort/quicksort.py)
 * 队列: [queue](queue/queue.py)

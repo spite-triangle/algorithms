@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "*.vue": "html",
+        "*.m": "matlab",
+        "string": "cpp",
+        "map": "cpp",
+        "cerrno": "cpp",
+        "cstdarg": "cpp",
+        "streambuf": "cpp",
+        "*.tcc": "cpp",
+        "unordered_map": "cpp",
+        "algorithm": "cpp",
+        "bitset": "cpp"
+    }
+}
