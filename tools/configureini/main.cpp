@@ -4,7 +4,7 @@
 int main(int argc, char const *argv[])
 {
     mini::OperatorINI config;
-    config.readINI("./data/out.ini");
-    config.writeINI("./data/in.ini");
+    config.readINI("./data/in.ini");
+    config.writeINI("./data/out.ini");
     return 0;
 }

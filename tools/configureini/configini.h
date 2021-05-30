@@ -74,6 +74,16 @@ class OperatorINI {
     string getValue(string section, string key);
 
     /*
+     * 描述: 获取值
+     */
+    int getValueInt(string section, string key);
+
+    /*
+     * 描述: 获取值
+     */
+    float getValueFloat(string section, string key);
+
+    /*
      * 描述: 获取注释
      */
     string getComment(string section, string key);
