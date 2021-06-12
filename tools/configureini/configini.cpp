@@ -108,6 +108,11 @@ namespace mini
                 continue;
             }
 
+            if (sectionCurr == nullptr)
+            {
+                continue;
+            }
+            
             // 解析key,value
             if (regex_search(line, result, keyValuePattern))
             {
@@ -186,6 +191,21 @@ namespace mini
 #endif
 
         return this->sections.at(section)->nodes.at(key)->value;
+    }
+    
+    void OperatorINI::setValue(string section, string key,string value) 
+    {
+        this->sections[section]->nodes[key]->value = value;
+    }
+    
+    void OperatorINI::setValue(string section, string key,float value) 
+    {
+        this->sections[section]->nodes[key]->value = to_string(value);
+    }
+    
+    void OperatorINI::setValue(string section, string key,int value) 
+    {
+        this->sections[section]->nodes[key]->value = to_string(value);
     }
     
     int OperatorINI::getValueInt(string section, string key) 

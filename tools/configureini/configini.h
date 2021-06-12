@@ -73,6 +73,11 @@ class OperatorINI {
      */
     string getValue(string section, string key);
 
+    void setValue(string section, string key,string value);
+
+    void setValue(string section, string key,float value);
+    
+    void setValue(string section, string key,int value);
     /*
      * 描述: 获取值
      */
