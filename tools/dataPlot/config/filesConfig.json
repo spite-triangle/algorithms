@@ -1,8 +1,26 @@
 {
+    "test.txt": {
+        "filePath": "F:/workPlace/algorithm/tools/dataPlot/data/test.txt",
+        "fileColumns": [
+            "x",
+            "y",
+            "z"
+        ],
+        "fileSep": "\\t",
+        "dataIsShow": true
+    },
+    "test1.txt": {
+        "filePath": "F:/workPlace/algorithm/tools/dataPlot/data/test1.txt",
+        "fileColumns": [
+            "x",
+            "y",
+            "z"
+        ],
+        "fileSep": "\\t",
+        "dataIsShow": false
+    },
     "yAxis": [
-        "1",
-        "2",
-        "3"
+        "y"
     ],
-    "xAxis": "1"
+    "xAxis": "x"
 }
