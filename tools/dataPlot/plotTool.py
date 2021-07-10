@@ -186,9 +186,15 @@ class Application(tk.Frame):
             plt.xlabel(xAxis)
             plt.ylabel(col)
             plt.grid(linestyle='-.')
-            for data in datas:
-                plt.plot(data[xAxis],data[col])
-            plt.legend(names)
+            legends = []
+            for index in range(len(datas)):
+                data = datas[index]
+                if xAxis in data.columns and col in data.columns:
+                    plt.plot(data[xAxis],data[col])
+                    legends.append(names[index])
+                else:
+                    continue
+            plt.legend(legends)
             if self.isSaveFig:
                 plt.savefig(self.baseDir + "/image/"+"Fig" + xAxis + "_" + col+".jpg")
  

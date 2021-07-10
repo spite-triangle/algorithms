@@ -14,6 +14,9 @@
 ## 卡尔曼滤波
 * [卡尔曼滤波( Kalman Filtering )](https://spite-triangle.github.io/algorithms/KalmanFiltering/KalmanFilterin.html)
   
+## 正太分布
+* [Gaussian Distribution](https://spite-triangle.github.io/algorithms/GaussianDistribution/GaussianDistribution.html)
+  
 ## 数字信号处理
 
 * [数字信号处理](https://spite-triangle.github.io/algorithms/digitalSignalProcessing/digitalSignalProcessing.html)
