@@ -1,0 +1,723 @@
+<!DOCTYPE html><html><head>
+      <title>c_c++</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+.markdown-preview.markdown-preview p {
+  font-size: 18px;
+}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <hr>
+<h1 class="mume-header" id="cc%E7%AC%94%E8%AE%B0">c/c++&#x7B14;&#x8BB0;</h1>
+
+<hr>
+<hr>
+<ul>
+<li><a href="#cc%E7%AC%94%E8%AE%B0">c/c++&#x7B14;&#x8BB0;</a></li>
+<li><a href="#%E4%B8%80-%E6%96%87%E4%BB%B6">&#x4E00;&#x3001;&#x6587;&#x4EF6;</a>
+<ul>
+<li><a href="#11-c">1.1 c</a></li>
+<li><a href="#12-c">1.2 c++</a></li>
+<li><a href="#13-%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0">1.3 &#x5185;&#x8054;&#x51FD;&#x6570;</a></li>
+<li><a href="#14-%E9%87%8D%E5%AE%9A%E4%B9%89">1.4 &#x91CD;&#x5B9A;&#x4E49;</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8C-%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E5%99%A8">&#x4E8C;&#x3001;&#x6587;&#x4EF6;&#x7F16;&#x8BD1;&#x5668;</a>
+<ul>
+<li><a href="#21-%E7%BC%96%E8%AF%91%E5%99%A8">2.1 &#x7F16;&#x8BD1;&#x5668;</a></li>
+<li><a href="#22-%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%A3%B0%E6%98%8E">2.2 &#x5B9A;&#x4E49;&#x4E0E;&#x58F0;&#x660E;</a></li>
+<li><a href="#23-%E6%A8%A1%E5%9D%97%E5%8C%96%E8%AE%BE%E8%AE%A1">2.3 &#x6A21;&#x5757;&#x5316;&#x8BBE;&#x8BA1;</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-%E5%85%B3%E9%94%AE%E5%AD%97">&#x4E09;&#x3001;&#x5173;&#x952E;&#x5B57;</a>
+<ul>
+<li><a href="#31-newdelete">3.1 new/delete</a></li>
+<li><a href="#32-const">3.2 const</a>
+<ul>
+<li><a href="#321-c">3.2.1 c</a></li>
+<li><a href="#322-c">3.2.2 c++</a></li>
+</ul>
+</li>
+<li><a href="#33-override">3.3 override</a></li>
+<li><a href="#34-volatile">3.4 volatile</a></li>
+<li><a href="#35-static">3.5 static</a></li>
+<li><a href="#36-extern-c">3.6 extern &quot;C&quot;</a></li>
+<li><a href="#37-extern">3.7 extern</a></li>
+<li><a href="#38-friend">3.8 friend</a></li>
+<li><a href="#38-%E5%82%A8%E5%AD%98%E7%B1%BB%E5%9E%8B%E7%AC%A6">3.8 &#x50A8;&#x5B58;&#x7C7B;&#x578B;&#x7B26;</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%9B-%E7%B1%BB">&#x56DB;&#x3001;&#x7C7B;</a>
+<ul>
+<li><a href="#41-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8">4.1 &#x6307;&#x9488;&#x4E0E;&#x5F15;&#x7528;</a></li>
+<li><a href="#42-%E5%AF%B9%E8%B1%A1%E4%B8%8E%E7%B1%BB">4.2 &#x5BF9;&#x8C61;&#x4E0E;&#x7C7B;</a></li>
+<li><a href="#43-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88">4.3 &#x667A;&#x80FD;&#x6307;&#x9488;</a></li>
+<li><a href="#44-%E9%87%8E%E6%8C%87%E9%92%88">4.4 &#x91CE;&#x6307;&#x9488;</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%94-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1">&#x4E94;&#x3001;&#x9762;&#x5411;&#x5BF9;&#x8C61;</a>
+<ul>
+<li><a href="#51-%E9%87%8D%E8%BD%BD%E9%87%8D%E5%86%99%E9%87%8D%E5%AE%9A%E4%B9%89">5.1 &#x91CD;&#x8F7D;&#xFF0C;&#x91CD;&#x5199;&#xFF0C;&#x91CD;&#x5B9A;&#x4E49;</a></li>
+<li><a href="#52-%E8%99%9A%E5%87%BD%E6%95%B0">5.2 &#x865A;&#x51FD;&#x6570;</a></li>
+<li><a href="#53-%E7%BB%A7%E6%89%BF">5.3 &#x7EE7;&#x627F;</a></li>
+<li><a href="#54-%E9%87%8D%E8%BD%BD%E5%A4%9A%E6%80%81">5.4 &#x91CD;&#x8F7D;/&#x591A;&#x6001;</a></li>
+<li><a href="#55-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0">5.5 &#x6784;&#x9020;/&#x6790;&#x6784;&#x51FD;&#x6570;</a></li>
+<li><a href="#56-%E9%9D%99%E7%BB%91%E5%AE%9A%E4%B8%8E%E5%8A%A8%E7%BB%91%E5%AE%9A">5.6 &#x9759;&#x7ED1;&#x5B9A;&#x4E0E;&#x52A8;&#x7ED1;&#x5B9A;</a></li>
+<li><a href="#57-%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0">5.7 &#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%AD-%E5%86%85%E5%AD%98">&#x516D;&#x3001;&#x5185;&#x5B58;</a>
+<ul>
+<li><a href="#61-c">6.1 c++</a></li>
+<li><a href="#63-%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E6%A0%88%E6%BA%A2%E5%87%BA">6.3 &#x5185;&#x5B58;&#x6CC4;&#x9732;/&#x6808;&#x6EA2;&#x51FA;</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 class="mume-header" id="%E4%B8%80-%E6%96%87%E4%BB%B6">&#x4E00;&#x3001;&#x6587;&#x4EF6;</h1>
+
+<h2 class="mume-header" id="11-c">1.1 c</h2>
+
+<p>&#x5934;&#x6587;&#x4EF6;&#x540E;&#x7F00;&#x540D;&#xFF1A; .h</p>
+<p>&#x6E90;&#x6587;&#x4EF6;&#x540E;&#x7F00;&#x540D;&#xFF1A; .c</p>
+<h2 class="mume-header" id="12-c">1.2 c++</h2>
+
+<p>&#x5934;&#x6587;&#x4EF6;&#x540E;&#x7F00;&#x540D;&#xFF1A; .h, .hpp, .hxx</p>
+<p>&#x6E90;&#x6587;&#x4EF6;&#x540E;&#x7F00;&#x540D;&#xFF1A;.cpp, .cc, .cxx, .C .c++</p>
+<p>.hpp: &#x58F0;&#x660E;&#x548C;&#x5B9E;&#x73B0;&#x90FD;&#x6709;</p>
+<p>.inl: &#x5185;&#x8054;&#x51FD;&#x6570;</p>
+<h2 class="mume-header" id="13-%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0">1.3 &#x5185;&#x8054;&#x51FD;&#x6570;</h2>
+
+<p>&#x2003;&#x2003;&#x4F7F;&#x7528;inline&#x4FEE;&#x9970;&#x7684;<font color="#4c9df8">&#x5177;&#x4F53;&#x51FD;&#x6570;&#x5B9E;&#x73B0;&#xFF0C;&#x975E;&#x58F0;&#x660E;</font>&#x3002;&#x5BF9;&#x4E8E;&#x7F16;&#x8BD1;&#x5668;&#x627F;&#x8BA4;&#x7684;inline&#x51FD;&#x6570;&#xFF0C;&#x5C06;&#x4F1A;&#x76F4;&#x63A5;&#x628A;&#x4EE3;&#x7801;&#x62F7;&#x8D1D;&#x5230;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x4F4D;&#x7F6E;&#x3002;</p>
+<ul>
+<li>&#x5EFA;&#x8BAE;&#x6027;&#x8D28;&#x7684;&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x53EA;&#x6709;&#x7B80;&#x5355;&#x7684;&#x51FD;&#x6570;&#x4F1A;&#x88AB;&#x7F16;&#x8BD1;&#x5668;&#x627F;&#x8BA4;&#x3002;</li>
+<li>&#x7C7B;&#x7684;&#x51FD;&#x6570;&#x90FD;&#x662F;&#x6709;inline&#x4FEE;&#x9970;</li>
+<li>&#x6CDB;&#x578B;&#x5B9A;&#x4E49;</li>
+</ul>
+<h2 class="mume-header" id="14-%E9%87%8D%E5%AE%9A%E4%B9%89">1.4 &#x91CD;&#x5B9A;&#x4E49;</h2>
+
+<p>&#x2003;&#x2003; <strong>#include&#x4F1A;&#x5C06;&#x5934;&#x6587;&#x4EF6;&#x590D;&#x5236;&#xFF0C;&#x540C;&#x4E00;&#x4E2A;&#x4E1C;&#x897F;&#x5934;&#x6587;&#x4EF6;&#x5B9E;&#x73B0;&#x4E00;&#x6B21;&#xFF0C;&#x6E90;&#x6587;&#x4EF6;&#x5B9E;&#x73B0;&#x4E00;&#x6B21;&#x5C31;&#x4F1A;&#x89E6;&#x53D1;&#x91CD;&#x5B9A;&#x4E49;&#x3002;</strong></p>
+<h1 class="mume-header" id="%E4%BA%8C-%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E5%99%A8">&#x4E8C;&#x3001;&#x6587;&#x4EF6;&#x7F16;&#x8BD1;&#x5668;</h1>
+
+<h2 class="mume-header" id="21-%E7%BC%96%E8%AF%91%E5%99%A8">2.1 &#x7F16;&#x8BD1;&#x5668;</h2>
+
+<ul>
+<li>gcc&#x4E0E;g++&#x8FDB;&#x884C;&#x6587;&#x4EF6;&#x7F16;&#x8BD1;&#x65F6;&#xFF0C;&#x4F1A;&#x4E92;&#x76F8;&#x8C03;&#x7528;&#xFF0C; .c&#x6587;&#x4EF6;&#x9664;&#x5916;; &#x94FE;&#x63A5;&#x65F6;&#xFF0C;&#x4E0D;&#x4F1A;&#x4E92;&#x76F8;&#x8C03;&#x7528;&#x3002;<br>
+-&#x6D41;&#x7A0B;: &#x9884;&#x5904;&#x7406;&#xFF0C;&#x7F16;&#x8BD1;&#xFF0C;&#x6C47;&#x7F16;&#xFF0C;&#x94FE;&#x63A5;&#x3002;</li>
+</ul>
+<h2 class="mume-header" id="22-%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%A3%B0%E6%98%8E">2.2 &#x5B9A;&#x4E49;&#x4E0E;&#x58F0;&#x660E;</h2>
+
+<ul>
+<li>
+<p>&#x5B9A;&#x4E49;&#xFF1A;&#x8868;&#x793A;&#x521B;&#x5EFA;&#x53D8;&#x91CF;&#x6216;&#x5206;&#x914D;&#x5B58;&#x50A8;&#x5355;&#x5143;</p>
+<ul>
+<li>&#x5B9A;&#x4E49;&#x5FC5;&#x987B;&#x6709;&#xFF0C;&#x4E14;&#x53EA;&#x80FD;&#x51FA;&#x73B0;&#x4E00;&#x6B21;</li>
+</ul>
+</li>
+<li>
+<p>&#x58F0;&#x660E;&#xFF1A;&#x8BF4;&#x660E;&#x53D8;&#x91CF;&#x7684;&#x6027;&#x8D28;&#xFF0C;&#x4F46;&#x5E76;&#x4E0D;&#x5206;&#x914D;&#x5B58;&#x50A8;&#x5355;&#x5143;;&#x5728; <strong>&#x94FE;&#x63A5;</strong> &#x65F6;&#xFF0C;&#x67E5;&#x627E;&#x5177;&#x4F53;&#x5B9A;&#x4E49;&#x3002;</p>
+<ul>
+<li>&#x58F0;&#x660E;&#x53EF;&#x4EE5;&#x51FA;&#x73B0;&#x591A;&#x6B21;</li>
+</ul>
+</li>
+<li>
+<p>&#x53D8;&#x91CF;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>// &#x58F0;&#x660E;
+extern int i; 
+// &#x58F0;&#x660E;&#x53C8;&#x5B9A;&#x4E49;
+int i;
+int i = 1;
+extern int i = 1; // &#x51FD;&#x6570;&#x5916;&#x90E8;&#x624D;&#x80FD;&#x88AB;&#x521D;&#x59CB;&#x5316;
+</code></pre></li>
+</ul>
+<p>&#x2003;&#x2003;<font color="#f44336">&#x6E90;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x5168;&#x5C40;&#x53D8;&#x91CF; <code>int a;</code> &#x5F62;&#x5F0F;&#xFF0C;&#x9ED8;&#x8BA4;&#x4FEE;&#x9970;&#x7B26;&#x4E3A;extern&#x3002;</font></p>
+<ul>
+<li>&#x51FD;&#x6570;: &#x5E26;&#x6709;{ }&#x7684;&#x5C31;&#x662F;&#x5B9A;&#x4E49;&#xFF0C;&#x5426;&#x5219;&#x5C31;&#x662F;&#x58F0;&#x660E;&#x3002;</li>
+</ul>
+<h2 class="mume-header" id="23-%E6%A8%A1%E5%9D%97%E5%8C%96%E8%AE%BE%E8%AE%A1">2.3 &#x6A21;&#x5757;&#x5316;&#x8BBE;&#x8BA1;</h2>
+
+<ol>
+<li>&#x6A21;&#x5757;&#x5373;&#x662F;&#x4E00;&#x4E2A;.c&#x6587;&#x4EF6;&#x548C;&#x4E00;&#x4E2A;.h&#x6587;&#x4EF6;&#x7684;&#x7ED3;&#x5408;&#xFF0C;<strong>&#x5934;&#x6587;&#x4EF6;(.h)&#x4E2D;&#x662F;&#x5BF9;&#x4E8E;&#x8BE5;&#x6A21;&#x5757;&#x63A5;&#x53E3;&#x7684;&#x58F0;&#x660E;&#xFF0C;&#x4E00;&#x822C;&#x90FD;&#x7528;extern&#x8FDB;&#x884C;&#x4FEE;&#x9970;</strong>&#xFF1B;</li>
+<li>&#x4F9B;&#x7ED9;&#x5176;&#x5B83;&#x6A21;&#x5757;&#x8C03;&#x7528;&#x7684;&#x5916;&#x90E8;&#x51FD;&#x6570;&#x53CA;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x9700;&#x5728;.h&#x4E2D;&#x6587;&#x4EF6;&#x4E2D;&#x51A0;&#x4EE5;extern&#x5173;&#x952E;&#x5B57;&#x58F0;&#x660E;&#xFF1B;</li>
+<li>&#x6A21;&#x5757;&#x5185;&#x7684;&#x51FD;&#x6570;&#x548C;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x9700;&#x5728;.c&#x6587;&#x4EF6;&#x5F00;&#x5934;&#x51A0;&#x4EE5;static&#x5173;&#x952E;&#x5B57;&#x58F0;&#x660E;&#xFF1B;</li>
+<li><font color="#f44336">&#x6C38;&#x8FDC;&#x4E0D;&#x8981;&#x5728;.h&#x6587;&#x4EF6;&#x4E2D;&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#xFF01;</font></li>
+<li>&#x5934;&#x6587;&#x4EF6;&#x4E2D;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x7684;&#x5B9E;&#x4F53;&#xFF0C;<font color="#f44336">&#x5F97;&#x6709;&#x5934;&#x6587;&#x4EF6;&#x4FDD;&#x62A4;&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x91CD;&#x5B9A;&#x4E49;&#x3002;</font>
+<ul>
+<li>&#x503C;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x5C31;&#x5DF2;&#x77E5;&#x7684;const &#x53D8;&#x91CF;&#x7684;&#x5B9A;&#x4E49;&#x53EF;&#x4EE5;&#x653E;&#x5230;&#x5934;&#x6587;&#x4EF6;&#x4E2D;</li>
+<li>&#x7ED3;&#x6784;&#x4F53;&#xFF0C;&#x7C7B;&#x7684;&#x5B9A;&#x4E49;&#x53EF;&#x4EE5;&#x653E;&#x5230;&#x5934;&#x6587;&#x4EF6;&#x4E2D;</li>
+<li>inline &#x51FD;&#x6570;</li>
+</ul>
+</li>
+</ol>
+<h1 class="mume-header" id="%E4%B8%89-%E5%85%B3%E9%94%AE%E5%AD%97">&#x4E09;&#x3001;&#x5173;&#x952E;&#x5B57;</h1>
+
+<h2 class="mume-header" id="31-newdelete">3.1 new/delete</h2>
+
+<p>&#x2003;&#x2003;&#x7F16;&#x8BD1;&#x5668;&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x4F1A;&#x8C03;&#x7528;&#x6784;&#x9020;&#x5668;&#x4E0E;&#x6790;&#x6784;&#x5668;&#x3002;malloc/free&#x4E3A;&#x5E93;&#x51FD;&#x6570;&#x5B9E;&#x73B0;&#x3002;</p>
+<h2 class="mume-header" id="32-const">3.2 const</h2>
+
+<h3 class="mume-header" id="321-c">3.2.1 c</h3>
+
+<ul>
+<li>const&#x53D8;&#x91CF;: &#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6307;&#x9488;&#x4FEE;&#x6539;&#x503C;&#xFF0C;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x5EFA;&#x8BAE;&#x3002;</li>
+</ul>
+<h3 class="mume-header" id="322-c">3.2.2 c++</h3>
+
+<ul>
+<li>&#x7C7B;&#x6210;&#x5458;&#x51FD;&#x6570;&#x540E;: &#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x4E0D;&#x4F1A;&#x5BF9;&#x8FD9;&#x4E2A;&#x7C7B;&#x5BF9;&#x8C61;&#x7684;&#x6570;&#x636E;&#x6210;&#x5458;&#xFF08;&#x51C6;&#x786E;&#x5730;&#x8BF4;&#x662F;&#x975E;&#x9759;&#x6001;&#x6570;&#x636E;&#x6210;&#x5458;&#xFF09;&#x4F5C;&#x4EFB;&#x4F55;&#x6539;&#x53D8;&#x3002; <font color="#f44336">const&#x51FD;&#x6570;&#x5185;&#xFF0C;&#x53EA;&#x80FD;&#x8C03;&#x7528;const&#x51FD;&#x6570;&#x3002;</font></li>
+<li>&#x7C7B;&#x6210;&#x5458;&#x51FD;&#x6570;&#x524D;: &#x8FD4;&#x56DE;&#x503C;&#x662F;&#x4E00;&#x4E2A;&#x5E38;&#x91CF;&#xFF0C;&#x4E0D;&#x80FD;&#x4FEE;&#x6539;&#x3002;</li>
+<li>const&#x53D8;&#x91CF;:
+<ul>
+<li>&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x5C06;&#x5E38;&#x91CF;&#x4F18;&#x5316;&#xFF0C;&#x653E;&#x5230;&#x7B26;&#x53F7;&#x8868;&#xFF0C;<font color="#f44336">&#x53D6;&#x503C;&#x4F1A;&#x4ECE;&#x8868;&#x4E2D;&#x76F4;&#x63A5;&#x83B7;&#x53D6;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x53BB;&#x5185;&#x5B58;</font>&#x3002;&#x901A;&#x8FC7;&#x6307;&#x9488;&#x4FEE;&#x6539;&#x503C;&#x540E;&#xFF0C;&#x503C;&#x4E0D;&#x53D8;&#x3002;</li>
+<li>&#x6DFB;&#x52A0;&#x5173;&#x952E;&#x5B57;volatile&#xFF0C;&#x53EF;&#x4EE5;&#x9632;&#x6B62;&#x7F16;&#x8BD1;&#x5668;&#x4F18;&#x5316;&#xFF0C;&#x4ECE;&#x5185;&#x5B58;&#x53D6;&#x503C;&#x3002;&#x901A;&#x8FC7;&#x6307;&#x9488;&#x4FEE;&#x6539;&#x503C;&#x540E;&#xFF0C;&#x503C;&#x4F1A;&#x53D8;&#x3002;</li>
+</ul>
+</li>
+<li>const&#x5BF9;&#x8C61;: &#x53EA;&#x80FD;&#x8BBF;&#x95EE;const&#x4E0E;static&#x4FEE;&#x9970;&#x3002;</li>
+</ul>
+<h2 class="mume-header" id="33-override">3.3 override</h2>
+
+<p>&#x2003;&#x2003;&#x914D;&#x5408; <strong>virtual</strong> &#x5173;&#x952E;&#x5B57;&#x4F7F;&#x7528;&#xFF1B;&#x4FEE;&#x9970;&#x5B50;&#x7C7B; <strong>override</strong> &#x51FD;&#x6570;&#x3002;</p>
+<h2 class="mume-header" id="34-volatile">3.4 volatile</h2>
+
+<ul>
+<li>&#x907F;&#x514D;&#x4F18;&#x5316;&#x3001;&#x5F3A;&#x5236;&#x5185;&#x5B58;&#x8BFB;&#x53D6;&#x7684;&#x987A;&#x5E8F;&#x3002;</li>
+<li><strong>&#x6CA1;&#x6709;&#x7EBF;&#x7A0B;&#x540C;&#x6B65;&#x7684;&#x8BED;&#x4E49;</strong></li>
+</ul>
+<h2 class="mume-header" id="35-static">3.5 static</h2>
+
+<ul>
+<li>&#x51FD;&#x6570;&#x4F53;&#x5185;&#xFF1A; &#x4FEE;&#x9970;&#x7684;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x4F5C;&#x7528;&#x8303;&#x56F4;&#x4E3A;&#x8BE5;&#x51FD;&#x6570;&#x4F53;&#xFF0C;<strong>&#x5728;&#x5185;&#x5B58;&#x53EA;&#x88AB;&#x5206;&#x914D;&#x4E00;&#x6B21;&#xFF0C;&#x4E0B;&#x6B21;&#x8C03;&#x7528;&#x7684;&#x65F6;&#x5019;&#x7EF4;&#x6301;&#x4E86;&#x4E0A;&#x6B21;&#x7684;&#x503C;</strong>&#x3002;</li>
+<li><font color="#f44336">&#x6E90;&#x6587;&#x4EF6;</font>&#x5168;&#x5C40;&#xFF1A;&#x4FEE;&#x9970;&#x7684;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x6216;&#x51FD;&#x6570;&#xFF0C;&#x8303;&#x56F4;&#x9650;&#x5236;&#x5728;&#x58F0;&#x660E;&#x5B83;&#x7684;&#x6A21;&#x5757;&#x5185;&#xFF0C;<strong>&#x4E0D;&#x80FD;&#x88AB;extern&#x627E;&#x5230;</strong>&#x3002;</li>
+<li>&#x7C7B;&#x4E2D;&#x4FEE;&#x9970;&#x6210;&#x5458;&#x53D8;&#x91CF;: &#x8868;&#x793A;&#x8BE5;&#x53D8;&#x91CF;&#x5C5E;&#x4E8E;&#x6574;&#x4E2A;&#x7C7B;&#x6240;&#x6709;&#xFF0C;&#x5BF9;&#x7C7B;&#x7684;&#x6240;&#x6709;&#x5BF9;&#x8C61;&#x53EA;&#x6709;&#x4E00;&#x4EFD;&#x62F7;&#x8D1D;&#x3002;
+<ul>
+<li><font color="#f44336">&#x5728;&#x7C7B;&#x91CC;&#x58F0;&#x660E;&#xFF0C;&#x5230;&#x7C7B;&#x5916;&#x5B9E;&#x73B0;</font></li>
+<li><strong>&#x7C7B;&#x5916;&#x5168;&#x5C40;&#x5904;&#x5B9E;&#x73B0;</strong>&#xFF0C;&#x4E0D;&#x7528;static&#x4FEE;&#x9970;</li>
+<li><strong>&#x5168;&#x5BF9;&#x8C61;&#x5171;&#x4EAB;</strong></li>
+</ul>
+</li>
+<li>&#x7C7B;&#x4E2D;&#x4FEE;&#x9970;&#x6210;&#x5458;&#x51FD;&#x6570;: &#x8868;&#x793A;&#x8BE5;&#x51FD;&#x6570;&#x5C5E;&#x4E8E;&#x6574;&#x4E2A;&#x7C7B;&#x6240;&#x6709;&#xFF0C;&#x4E0D;&#x63A5;&#x53D7;this&#x6307;&#x9488;&#xFF0C;&#x53EA;&#x80FD;&#x8BBF;&#x95EE;&#x7C7B;&#x4E2D;&#x7684;static&#x6210;&#x5458;&#x53D8;&#x91CF;&#x3002;
+<ul>
+<li>&#x7C7B;&#x7684;&#x91CC;/&#x5916;&#x90FD;&#x80FD;&#x5B9E;&#x73B0;&#xFF0C;&#x7C7B;&#x5916;&#x5B9E;&#x73B0;&#x7701;&#x7565;static</li>
+</ul>
+</li>
+</ul>
+<h2 class="mume-header" id="36-extern-c">3.6 extern &quot;C&quot;</h2>
+
+<p>&#x2003;&#x2003;&#x4F1A;&#x6307;&#x793A;&#x7F16;&#x8BD1;&#x5668;&#x8FD9;&#x90E8;&#x5206;&#x4EE3;&#x7801;&#x6309;C&#x8BED;&#x8A00;&#x7684;&#x8FDB;&#x884C;&#x7F16;&#x8BD1;&#xFF0C;&#x800C;&#x4E0D;&#x662F;C++&#x7684;;&#x80FD;&#x591F;&#x6B63;&#x786E;&#x5B9E;&#x73B0;C++&#x4EE3;&#x7801;&#x8C03;&#x7528;&#x5176;&#x4ED6;C&#x8BED;&#x8A00;&#x4EE3;&#x7801;&#x3002;</p>
+<h2 class="mume-header" id="37-extern">3.7 extern</h2>
+
+<p>&#x2003;&#x2003;&#x4F7F;&#x7528;include&#x5C06;&#x53E6;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5168;&#x90E8;&#x5305;&#x542B;&#x8FDB;&#x53BB;&#x53EF;&#x4EE5;&#x5F15;&#x7528;&#x53E6;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x6837;&#x505A;&#x7684;&#x7ED3;&#x679C;&#x5C31;&#x662F;&#xFF0C;&#x88AB;&#x5305;&#x542B;&#x7684;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x7684;&#x53D8;&#x91CF;&#x548C;&#x65B9;&#x6CD5;&#x90FD;&#x53EF;&#x4EE5;&#x88AB;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x4F7F;&#x7528;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53D8;&#x5F97;&#x4E0D;&#x5B89;&#x5168;&#x3002;&#x5982;&#x679C;&#x53EA;&#x662F;&#x5E0C;&#x671B;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x4F7F;&#x7528;&#x53E6;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x67D0;&#x4E2A;&#x53D8;&#x91CF;&#x8FD8;&#x662F;&#x4F7F;&#x7528;extern&#x5173;&#x952E;&#x5B57;&#x66F4;&#x597D;&#x3002;</p>
+<ul>
+<li><font color="#f44336">&#x6E90;&#x6587;&#x4EF6;</font>&#x4E2D;&#x7684;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x4E0E;&#x51FD;&#x6570;&#xFF0C;&#x9ED8;&#x8BA4;&#x90FD;&#x80FD;&#x88AB;extern&#x627E;&#x5230;&#x3002;</li>
+</ul>
+<h2 class="mume-header" id="38-friend">3.8 friend</h2>
+
+<p>&#x2003;&#x2003;&#x53EF;&#x4EE5;&#x8BA9;&#x5916;&#x90E8;&#x51FD;&#x6570;&#x6216;&#x8005;&#x5916;&#x90E8;&#x7C7B;&#xFF0C;&#x8BBF;&#x95EE;&#x79C1;&#x6709;&#x7C7B;&#x7684;&#x79C1;&#x6709;&#x5C5E;&#x6027;&#x4E0E;&#x51FD;&#x6570;&#x3002;</p>
+<ul>
+<li>&#x53CB;&#x5143;&#x51FD;&#x6570;
+<ul>
+<li>&#x5B9A;&#x4E49;&#x5728;&#x7C7B;&#x5916;&#x7684;&#x666E;&#x901A;&#x51FD;&#x6570;</li>
+<li>&#x9700;&#x8981;&#x5728;&#x7C7B;&#x4E2D;&#x58F0;&#x660E;</li>
+</ul>
+</li>
+<li>&#x53CB;&#x5143;&#x7C7B;: &#x53CB;&#x5143;&#x7C7B;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x51FD;&#x6570;&#x90FD;&#x662F;&#x53E6;&#x4E00;&#x4E2A;&#x7C7B;&#x7684;&#x53CB;&#x5143;&#x51FD;&#x6570;&#xFF0C;&#x90FD;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x53E6;&#x4E00;&#x4E2A;&#x7C7B;&#x4E2D;&#x7684;&#x9690;&#x85CF;&#x4FE1;&#x606F;&#xFF08;&#x5305;&#x62EC;&#x79C1;&#x6709;&#x6210;&#x5458;&#x548C;&#x4FDD;&#x62A4;&#x6210;&#x5458;&#xFF09;&#x3002;
+<ul>
+<li>&#x4E0D;&#x80FD;&#x88AB;&#x7EE7;&#x627F;</li>
+<li>&#x4E24;&#x4E2A;&#x7C7B;&#x7684;&#x5173;&#x7CFB;&#x662F;&#x5355;&#x5411;&#x7684;</li>
+<li>&#x4E0D;&#x53EF;&#x4F20;&#x9012;</li>
+</ul>
+</li>
+</ul>
+<h2 class="mume-header" id="38-%E5%82%A8%E5%AD%98%E7%B1%BB%E5%9E%8B%E7%AC%A6">3.8 &#x50A8;&#x5B58;&#x7C7B;&#x578B;&#x7B26;</h2>
+
+<ul>
+<li>auto&#xFF1A;&#x6240;&#x6709;<strong>&#x5C40;&#x90E8;&#x53D8;&#x91CF;</strong>&#x9ED8;&#x8BA4;&#x7684;&#x5B58;&#x50A8;&#x7C7B;</li>
+<li>register: &#x5B58;&#x50A8;&#x5728;&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#xFF08;&#x53EA;&#x662F;&#x5EFA;&#x8BAE;&#xFF0C;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x770B;&#x7F16;&#x8BD1;&#x5668;&#xFF09;&#x3002;</li>
+<li>static&#xFF1A;&#x5C40;&#x90E8;&#x4FEE;&#x9970;&#x53D8;&#x91CF;&#x540E;&#x6539;&#x53D8;&#x4E86;&#x751F;&#x5B58;&#x671F;;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x4FEE;&#x9970;&#x540E;&#x6539;&#x53D8;&#x4E86;&#x4F5C;&#x7528;&#x57DF;</li>
+<li>extern&#xFF1A;&#x5F15;&#x5165;&#x5176;&#x4ED6;C&#x6587;&#x4EF6;&#x4E2D;&#x5DF2;&#x5B9A;&#x4E49;&#x7684;&#x975E;static&#x5168;&#x5C40;&#x53D8;&#x91CF;;&#x53EF;&#x4EE5;&#x5728;&#x51FD;&#x6570;&#x7684;&#x5185;&#x5916;&#x58F0;&#x660E;&#x53D8;&#x91CF;&#x6216;&#x8005;&#x51FD;&#x6570;&#x3002;</li>
+<li>mutable&#xFF1A;&#x4EC5;&#x9002;&#x7528;&#x4E8E;&#x7C7B;&#x7684;&#x5BF9;&#x8C61;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF0C;&#x5B83;&#x5141;&#x8BB8;const&#x51FD;&#x6570;&#x80FD;&#x5BF9;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#x3002;</li>
+</ul>
+<h1 class="mume-header" id="%E5%9B%9B-%E7%B1%BB">&#x56DB;&#x3001;&#x7C7B;</h1>
+
+<h2 class="mume-header" id="41-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8">4.1 &#x6307;&#x9488;&#x4E0E;&#x5F15;&#x7528;</h2>
+
+<div style="margin: 0 auto;padding:1rem;width: 32rem;">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>&#x50A8;&#x5B58;</th>
+<th>&#x521D;&#x59CB;&#x5316;</th>
+<th>&#x4E8C;&#x6B21;&#x8D4B;&#x503C;</th>
+<th>&#x5F62;&#x5F0F;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x6307;&#x9488;</td>
+<td>&#x6709;&#x50A8;&#x5B58;&#x7A7A;&#x95F4;</td>
+<td>NULL</td>
+<td>&#x53EF;&#x4EE5;</td>
+<td>&#x7C7B;&#x540D; *</td>
+</tr>
+<tr>
+<td>&#x5F15;&#x7528;</td>
+<td>&#x65E0;&#x7A7A;&#x95F4;&#xFF0C;&#x522B;&#x540D;</td>
+<td>&#x5DF2;&#x6709;&#x7684;&#x5BF9;&#x8C61;</td>
+<td>&#x4E0D;&#x884C;</td>
+<td>&#x7C7B;&#x540D; &amp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>&#x2003;&#x2003; <font color="#f44336">c&#x8BED;&#x8A00;&#x6CA1;&#x6709;&#x5F15;&#x7528;&#x673A;&#x5236;&#xFF0C;&#x662F;&#x9760;c++&#x6269;&#x5C55;&#x5B9E;&#x73B0;&#x3002;</font></p>
+<h2 class="mume-header" id="42-%E5%AF%B9%E8%B1%A1%E4%B8%8E%E7%B1%BB">4.2 &#x5BF9;&#x8C61;&#x4E0E;&#x7C7B;</h2>
+
+<div style="margin: 0 auto;padding:1rem;width: 32rem;">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>&#x63CF;&#x8FF0;</th>
+<th>&#x50A8;&#x5B58;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x7C7B;</td>
+<td>&#x6A21;&#x677F;&#xFF0C;&#x5305;&#x62EC;&#x5C5E;&#x6027;&#x548C;&#x884C;&#x4E3A;</td>
+<td>&#x65E0;</td>
+</tr>
+<tr>
+<td>&#x5BF9;&#x8C61;</td>
+<td>&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x5316;&#xFF0C;&#x4E3B;&#x8981;&#x662F;&#x6570;&#x636E;&#x7684;&#x96C6;&#x5408;</td>
+<td>&#x4E3B;&#x8981;&#x53EA;&#x50A8;&#x5B58;&#x4E86;&#x5C5E;&#x6027;&#xFF0C;&#x50A8;&#x5B58;&#x4F4D;&#x7F6E;&#x770B;&#x5177;&#x4F53;&#x60C5;&#x51B5; ; &#x51FD;&#x6570;&#x653E;&#x4EE3;&#x7801;&#x6BB5;&#xFF0C;&#x6240;&#x6709;&#x5BF9;&#x8C61;&#x901A;&#x7528;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 class="mume-header" id="43-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88">4.3 &#x667A;&#x80FD;&#x6307;&#x9488;</h2>
+
+<p>&#x2003;&#x2003;&#x901A;&#x8FC7;&#x5E93;&#x51FD;&#x6570;<memory>&#xFF0C;&#x7BA1;&#x7406;&#x5BF9;&#x8C61;&#x6307;&#x9488;&#x3002;</memory></p>
+<ul>
+<li><s>std::auto_ptr</s> : &#x5E9F;&#x5F03;</li>
+<li>unique_ptr: &#x5BF9;&#x8C61;&#x53EA;&#x80FD;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#x6301;&#x6709;&#x3002;<pre data-role="codeBlock" data-info="c++" class="language-cpp"> <span class="token comment">// &#x521D;&#x59CB;&#x5316;&#x8D4B;&#x503C;</span>
+ std<span class="token operator">::</span>unique_ptr<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token function">p1</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token comment">// &#x79FB;&#x4EA4;&#x6240;&#x6709;&#x6743;&#xFF0C;p1&#x5C06;&#x53D8;&#x65E0;&#x6548;</span>
+ std<span class="token operator">::</span>unique_ptr<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> p2 <span class="token operator">=</span> std<span class="token operator">::</span><span class="token function">move</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token comment">// &#x6EDE;&#x540E;&#x8D4B;&#x503C;</span>
+ unique_ptr<span class="token operator">&lt;</span>string<span class="token operator">&gt;</span> p3<span class="token punctuation">;</span>
+ p3 <span class="token operator">=</span> unique_ptr<span class="token operator">&lt;</span>string<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">string</span> <span class="token punctuation">(</span><span class="token string">&quot;You&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>shared_ptr: &#x591A;&#x4E2A;&#x6307;&#x9488;&#x6307;&#x5411;&#x76F8;&#x540C;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x5185;&#x90E8;&#x4F1A;&#x6709;&#x4E00;&#x4E2A;&#x6307;&#x5411;&#x8BA1;&#x6570;&#x5668;&#xFF0C;&#x5F53;&#x8BA1;&#x6570;&#x5668;&#x53D8;&#x4E3A;0&#x65F6;&#xFF0C;&#x7CFB;&#x7EDF;&#x5C31;&#x4F1A;&#x5BF9;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x9500;&#x6BC1;&#xFF0C;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x3002;<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token comment">// make_shared&#x751F;&#x6210;</span>
+std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> p1 <span class="token operator">=</span> std<span class="token operator">::</span>make_shared<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// &#x62F7;&#x8D1D;&#x8D4B;&#x503C;</span>
+std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> p2<span class="token punctuation">;</span>
+p2 <span class="token operator">=</span> p1<span class="token punctuation">;</span>
+</pre></li>
+<li>weak_ptr: <font color="#4c9df8">&#x6CA1;&#x6709;&#x91CD;&#x8F7D;operator*&#x548C;-&gt;&#xFF0C;&#x7528;&#x4E8E;&#x9632;&#x6B62;shared_ptr&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x3002;</font></li>
+</ul>
+<h2 class="mume-header" id="44-%E9%87%8E%E6%8C%87%E9%92%88">4.4 &#x91CE;&#x6307;&#x9488;</h2>
+
+<p>&#x2003;&#x2003;<strong>&#x91CE;&#x6307;&#x9488;&#x4E0D;&#x662F;NULL&#x6307;&#x9488;&#xFF0C;&#x662F;&#x672A;&#x521D;&#x59CB;&#x5316;&#x6216;&#x8005;&#x672A;&#x6E05;&#x96F6;&#x7684;&#x6307;&#x9488;&#xFF0C;&#x5728;&#x7A0B;&#x5E8F;&#x4E2D;&#x4E71;&#x6307;&#x3002;</strong></p>
+<ul>
+<li>&#x6307;&#x9488;&#x53D8;&#x91CF;&#x6CA1;&#x6709;&#x88AB;&#x521D;&#x59CB;&#x5316;</li>
+<li>&#x6307;&#x9488;&#x6307;&#x5411;&#x7684;&#x5185;&#x5B58;&#x88AB;&#x91CA;&#x653E;&#x4E86;&#xFF0C;&#x4F46;&#x662F;&#x6307;&#x9488;&#x6CA1;&#x6709;&#x7F6E;NULL</li>
+<li>&#x6307;&#x9488;&#x8D8A;&#x754C;</li>
+</ul>
+<h1 class="mume-header" id="%E4%BA%94-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1">&#x4E94;&#x3001;&#x9762;&#x5411;&#x5BF9;&#x8C61;</h1>
+
+<h2 class="mume-header" id="51-%E9%87%8D%E8%BD%BD%E9%87%8D%E5%86%99%E9%87%8D%E5%AE%9A%E4%B9%89">5.1 &#x91CD;&#x8F7D;&#xFF0C;&#x91CD;&#x5199;&#xFF0C;&#x91CD;&#x5B9A;&#x4E49;</h2>
+
+<ul>
+<li>&#x91CD;&#x8F7D; overload: <font color="#f44336">&#x540C;&#x4E00;&#x4E2A;&#x7C7B;&#x4E2D;</font>&#x3001;&#x51FD;&#x6570;&#x540D;&#x5B57;&#x76F8;&#x540C;&#x3001;&#x4F20;&#x53C2;&#x7C7B;&#x578B;&#x4E0E;&#x6570;&#x76EE;&#x4E0D;&#x540C;&#x3002;</li>
+<li>&#x8986;&#x76D6; override: &#x5B9E;&#x73B0;&#x7236;&#x7C7B;virtual&#x4FEE;&#x9970;&#x51FD;&#x6570;&#xFF0C;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#x5B8C;&#x5168;&#x4E00;&#x6837;&#x3002;<font color="#f44336">&#x8986;&#x76D6;&#x4E86;&#x7236;&#x7C7B;&#x7684;&#x865A;&#x51FD;&#x6570;&#x3002;</font></li>
+<li>&#x91CD;&#x5199; overwrite: &#x91CD;&#x5B9A;&#x4E49;&#x7236;&#x7C7B;&#x51FD;&#x6570;&#xFF0C;&#x4F1A;&#x5C4F;&#x853D;&#x7236;&#x7C7B;&#x6240;&#x6709;&#x540C;&#x540D;&#x51FD;&#x6570;&#x3002;</li>
+</ul>
+<p>&#x2003;&#x2003;<strong>&#x51FD;&#x6570;&#x540D;&#x76F8;&#x540C;&#x5C31;&#x4F1A;&#x5C4F;&#x853D;&#x7236;&#x7C7B;&#x540C;&#x540D;&#x51FD;&#x6570;</strong></p>
+<blockquote>
+<p><strong>&#x6CE8;</strong> :<br>
+&#x2003;&#x2003; &#x7528;&#x6237;&#x80FD;&#x5B9A;&#x4E49;&#x81EA;&#x5DF1;&#x7684;C&#x8BED;&#x8A00;&#x5E93;&#x51FD;&#x6570;&#xFF0C;&#x8FDE;&#x63A5;&#x5668;&#x5728;&#x8FDE;&#x63A5;&#x65F6;&#x81EA;&#x52A8;&#x4F7F;&#x7528;&#x8FD9;&#x4E9B;&#x65B0;&#x7684;&#x529F;&#x80FD;&#x51FD;&#x6570;&#x3002;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x53EB;&#x505A;<strong>&#x91CD;&#x5B9A;&#x5411;C&#x8BED;&#x8A00;&#x5E93;&#x51FD;&#x6570;</strong>&#x3002;</p>
+</blockquote>
+<h2 class="mume-header" id="52-%E8%99%9A%E5%87%BD%E6%95%B0">5.2 &#x865A;&#x51FD;&#x6570;</h2>
+
+<ul>
+<li>&#x865A;&#x51FD;&#x6570;&#x5B9E;&#x73B0;
+<ul>
+<li>&#x5E26;&#x6709;&#x865A;&#x51FD;&#x6570;&#x7684;&#x7C7B;&#x90FD;&#x4F1A;&#x6301;&#x6709;&#x4E00;&#x4E2A;&#x865A;&#x51FD;&#x6570;&#x8868;</li>
+<li>&#x7EE7;&#x627F;&#x5E26;&#x6709;&#x865A;&#x51FD;&#x6570;&#x7236;&#x7C7B;&#x7684;&#x5B50;&#x7C7B;&#xFF0C;&#x4F1A;&#x590D;&#x5236;&#x4E00;&#x4EFD;&#x7236;&#x7C7B;&#x865A;&#x51FD;&#x6570;&#x8868;&#xFF0C;&#x5E76;&#x6839;&#x636E;&#x81EA;&#x8EAB;&#x5B9E;&#x73B0;&#x60C5;&#x51B5;&#x4FEE;&#x6539;&#x865A;&#x51FD;&#x6570;&#x8868;</li>
+<li>&#x7EE7;&#x627F;&#x591A;&#x4E2A;&#x6709;&#x865A;&#x51FD;&#x6570;&#x8868;&#x7684;&#x5B50;&#x7C7B;&#xFF0C;&#x4F1A;&#x7EF4;&#x62A4;&#x6240;&#x6709;&#x7684;&#x7236;&#x7C7B;&#x865A;&#x51FD;&#x6570;&#x8868;</li>
+<li>&#x5B9E;&#x4F8B;&#x5316;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x4F1A;&#x6301;&#x6709;&#x4E00;&#x4E2A;&#x6307;&#x5411;&#x865A;&#x51FD;&#x6570;&#x8868;&#x7684;&#x6307;&#x9488;</li>
+</ul>
+</li>
+<li>&#x865A;&#x51FD;&#x6570;/&#x7EAF;&#x865A;&#x51FD;&#x6570; <font color="#f44336">&#x5B50;&#x7C7B;&#x5B9E;&#x73B0;&#x540E;&#x7B97;overwrite</font>
+<ul>
+<li>&#x865A;&#x51FD;&#x6570;: virtual&#x4FEE;&#x9970;&#xFF0C;&#x7236;&#x7C7B;&#x5B9E;&#x73B0;</li>
+<li>&#x7EAF;&#x865A;&#x51FD;&#x6570;: virtual&#x4FEE;&#x9970;&#xFF0C;&#x7236;&#x7C7B;&#x4E0D;&#x5B9E;&#x73B0;&#xFF0C;&#x540E;&#x9762;&#x53EF;&#x6709; = 0&#xFF0C;<font color="#f44336">&#x7EAF;&#x865A;&#x51FD;&#x6570;&#x7684;&#x7C7B;&#x4E3A;&#x62BD;&#x8C61;&#x7C7B;&#x3002;</font></li>
+</ul>
+</li>
+</ul>
+<p>&#x2003;&#x2003;<font color="#f44336">&#x865A;&#x51FD;&#x6570;&#x662F;&#x52A8;&#x7ED1;&#x5B9A;&#xFF0C;&#x8FD0;&#x884C;&#x65F6;&#x786E;&#x5B9A;&#x3002;</font></p>
+<h2 class="mume-header" id="53-%E7%BB%A7%E6%89%BF">5.3 &#x7EE7;&#x627F;</h2>
+
+<p>&#x2003;&#x2003;<font color="#f44336">&#x5F53;&#x79C1;&#x6709;&#x7EE7;&#x627F;&#x548C;&#x4FDD;&#x62A4;&#x7EE7;&#x627F;&#x65F6;&#xFF0C;&#x7236;&#x7C7B;&#x6307;&#x9488;(&#x5F15;&#x7528;)&#x65E0;&#x6CD5;&#x6307;&#x5411;&#x5B50;&#x7C7B;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;&#x79C1;&#x6709;&#x7EE7;&#x627F;&#x3002;</font></p>
+<h2 class="mume-header" id="54-%E9%87%8D%E8%BD%BD%E5%A4%9A%E6%80%81">5.4 &#x91CD;&#x8F7D;/&#x591A;&#x6001;</h2>
+
+<ul>
+<li>&#x591A;&#x6001;: <font color="#f44336">&#x7236;&#x7C7B;&#x4E0E;&#x5B50;&#x7C7B;&#x4E4B;&#x95F4;</font>&#xFF0C;&#x7236;&#x7C7B;&#x53EF;&#x4EE5;&#x63A5;&#x6536;&#x4E0D;&#x540C;&#x5B50;&#x7C7B;&#xFF0C;&#x4EA7;&#x751F;&#x4E0D;&#x540C;&#x7684;&#x884C;&#x4E3A;&#x3002;
+<ul>
+<li><strong>virtual &#x4FEE;&#x9970;&#x51FD;&#x6570;&#x7684; override&#xFF1A;&#x7236;&#x7C7B;&#x8C03;&#x7528;&#x5B50;&#x7C7B;&#x7684;&#x5B9E;&#x73B0;&#x3002;</strong> <font color="#ff0000"> &#x8BE5;&#x65B9;&#x5F0F;&#x624D;&#x5B9E;&#x73B0;&#x591A;&#x6001;&#x3002; </font></li>
+<li><strong>&#x65E0; virtual &#x4FEE;&#x9970;&#x51FD;&#x6570;&#x7684; overwrite&#xFF1A;&#x7236;&#x7C7B;&#x8C03;&#x7528;&#x7236;&#x7C7B;&#x7684;&#x5B9E;&#x73B0;&#x3002;</strong></li>
+</ul>
+</li>
+<li>&#x91CD;&#x8F7D;: <font color="#f44336">&#x4E00;&#x4E2A;&#x7C7B;&#x91CC;</font>&#xFF0C;&#x540C;&#x4E00;&#x540D;&#x5B57;&#x7684;&#x4E0D;&#x540C;&#x65B9;&#x6CD5;&#x3002;</li>
+</ul>
+<h2 class="mume-header" id="55-%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0">5.5 &#x6784;&#x9020;/&#x6790;&#x6784;&#x51FD;&#x6570;</h2>
+
+<ul>
+<li>&#x6784;&#x9020;&#x51FD;&#x6570;
+<ul>
+<li>&#x4E0D;&#x58F0;&#x660E;&#x4E3A;&#x865A;&#x51FD;&#x6570;</li>
+<li>&#x5148;&#x7236;&#x7C7B;&#xFF0C;&#x540E;&#x5B50;&#x7C7B;</li>
+<li>&#x9ED8;&#x8BA4;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x5373;&#x65E0;&#x53C2;&#x6784;&#x9020;&#x51FD;&#x6570;&#x3002;</li>
+</ul>
+</li>
+<li>&#x6790;&#x6784;&#x51FD;&#x6570;
+<ul>
+<li><strong>&#x8981;&#x58F0;&#x660E;&#x4E3A;&#x865A;&#x51FD;&#x6570;; &#x901A;&#x8FC7;&#x591A;&#x6001;&#x6790;&#x6784;&#x5B50;&#x5BF9;&#x8C61;&#x65F6;&#xFF0C;&#x624D;&#x80FD;&#x6B63;&#x786E;&#x8C03;&#x7528;&#x5B50;&#x7C7B;&#x6790;&#x6784;</strong></li>
+<li>&#x5148;&#x5B50;&#x7C7B;&#xFF0C;&#x518D;&#x7236;&#x7C7B;</li>
+</ul>
+</li>
+</ul>
+<h2 class="mume-header" id="56-%E9%9D%99%E7%BB%91%E5%AE%9A%E4%B8%8E%E5%8A%A8%E7%BB%91%E5%AE%9A">5.6 &#x9759;&#x7ED1;&#x5B9A;&#x4E0E;&#x52A8;&#x7ED1;&#x5B9A;</h2>
+
+<ul>
+<li>
+<p>&#x9759;&#x6001;&#x7C7B;&#x578B;&#xFF1A;&#x5BF9;&#x8C61;&#x5728;&#x58F0;&#x660E;&#x65F6;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x5728;&#x7F16;&#x8BD1;&#x671F;&#x65E2;&#x5DF2;&#x786E;&#x5B9A;&#xFF1B;</p>
+</li>
+<li>
+<p>&#x52A8;&#x6001;&#x7C7B;&#x578B;&#xFF1A;&#x901A;&#x5E38;&#x662F;&#x6307;&#x9488;&#x6216;&#x5F15;&#x7528;&#x6240;&#x6307;&#x5BF9;&#x8C61;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x662F;&#x5728;&#x8FD0;&#x884C;&#x671F;&#x51B3;&#x5B9A;&#x7684;&#xFF1B;</p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp"><span class="token comment">/**
+* A &#x7C7B;&#x662F;&#x58F0;&#x660E;&#xFF0C;&#x662F;obj&#x7684;&#x9759;&#x6001;&#x7C7B;&#x578B;
+* B &#x7C7B;&#x662F;&#x5177;&#x4F53;&#x5B9E;&#x4F8B;&#xFF0C;&#x662F;obj&#x7684;&#x52A8;&#x6001;&#x7C7B;&#x578B;
+*/</span>
+A<span class="token operator">*</span> obj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">B</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+<li>
+<p>&#x9759;&#x6001;&#x7ED1;&#x5B9A;&#xFF1A;&#x7ED1;&#x5B9A;&#x7684;&#x662F;&#x9759;&#x6001;&#x7C7B;&#x578B;&#xFF0C;&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x51FD;&#x6570;&#x6216;&#x5C5E;&#x6027;&#x4F9D;&#x8D56;&#x4E8E;&#x5BF9;&#x8C61;&#x7684;&#x9759;&#x6001;&#x7C7B;&#x578B;&#xFF0C;&#x53D1;&#x751F;&#x5728;&#x7F16;&#x8BD1;&#x671F;&#xFF1B;</p>
+</li>
+<li>
+<p>&#x52A8;&#x6001;&#x7ED1;&#x5B9A;&#xFF1A;&#x7ED1;&#x5B9A;&#x7684;&#x662F;&#x52A8;&#x6001;&#x7C7B;&#x578B;&#xFF0C;&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x51FD;&#x6570;&#x6216;&#x5C5E;&#x6027;&#x4F9D;&#x8D56;&#x4E8E;&#x5BF9;&#x8C61;&#x7684;&#x52A8;&#x6001;&#x7C7B;&#x578B;&#xFF0C;&#x53D1;&#x751F;&#x5728;&#x8FD0;&#x884C;&#x671F;&#xFF1B;<font color="#f44336">&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x4E8C;&#x6B21;&#x4FEE;&#x6539;&#x3002;</font></p>
+<pre data-role="codeBlock" data-info="c++" class="language-cpp">A<span class="token operator">*</span> obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+obj<span class="token operator">-&gt;</span><span class="token function">fcn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></li>
+</ul>
+<p>&#x2003;&#x2003;<font color="#f44336">&#x4E0A;&#x9762;&#x7684;&#x51FD;&#x6570;&#x4E5F;&#x662F;&#x80FD;&#x6B63;&#x5E38;&#x8FD0;&#x884C;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;obj&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x9759;&#x7ED1;&#x5B9A;&#x3002;</font></p>
+<h2 class="mume-header" id="57-%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0">5.7 &#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;</h2>
+
+<p>&#x2003;&#x2003;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x4E00;&#x79CD;&#xFF0C;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x672C;&#x7C7B;&#x7684;&#x5F15;&#x7528;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x7528;&#x4E0D;&#x7528;const&#x4FEE;&#x9970;&#x90FD;&#x4E00;&#x6837;&#x3002;</p>
+<ul>
+<li>&#x9ED8;&#x8BA4;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;: &#x5BF9;&#x6E90;&#x5BF9;&#x8C61;&#x7684;&#x9010;&#x4E2A;&#x5B57;&#x8282;&#x7684;&#x590D;&#x5236;&#xFF0C;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x548C;&#x6E90;&#x5BF9;&#x8C61;&#x76F8;&#x540C;&#xFF0C;&#x7531;&#x7F16;&#x8BD1;&#x5668;&#x81EA;&#x52A8;&#x751F;&#x6210;</li>
+<li>&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E0D;&#x80FD;&#x4EE5;&#x672C;&#x7C7B;&#x7684;&#x5BF9;&#x8C61;&#x4F5C;&#x4E3A;&#x552F;&#x4E00;&#x53C2;&#x6570;</li>
+<li>&#x8C03;&#x7528;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x4E0D;&#x8C03;&#x7528;&#x666E;&#x901A;&#x6784;&#x9020;:
+<ul>
+<li>&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x53BB;&#x521D;&#x59CB;&#x5316;&#x540C;&#x7C7B;&#x7684;&#x53E6;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;<font color="#f44336">&#x8D4B;&#x503C;&#x4E0D;&#x4F1A;&#x89E6;&#x53D1;&#x3002;</font><pre data-role="codeBlock" data-info="c++" class="language-cpp">A a<span class="token punctuation">;</span>
+<span class="token comment">// &#x521D;&#x59CB;&#x5316;</span>
+A b <span class="token operator">=</span> a<span class="token punctuation">;</span>
+A <span class="token function">c</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// &#x8D4B;&#x503C;</span>
+b <span class="token operator">=</span> a<span class="token punctuation">;</span>
+</pre></li>
+<li>&#x4F5C;&#x4E3A;&#x5F62;&#x53C2;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x662F;&#x7528;&#x590D;&#x5236;&#x6784;&#x9020;&#x51FD;&#x6570;&#x521D;&#x59CB;&#x5316;&#x7684;&#x3002;<font color="#f44336">&#x76F4;&#x63A5;&#x4F20;&#x9012;&#x5BF9;&#x8C61;&#xFF0C;&#x4F20;&#x8FC7;&#x53BB;&#x7684;&#x503C;&#xFF0C;&#x53D6;&#x51B3;&#x4E8E;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x5B9E;&#x73B0;&#x3002;</font></li>
+<li>return &#x8BED;&#x53E5;&#x6240;&#x8FD4;&#x56DE;&#x7684;&#x5BF9;&#x8C61;</li>
+</ul>
+</li>
+</ul>
+<h1 class="mume-header" id="%E5%85%AD-%E5%86%85%E5%AD%98">&#x516D;&#x3001;&#x5185;&#x5B58;</h1>
+
+<h2 class="mume-header" id="61-c">6.1 c++</h2>
+
+<ul>
+<li>&#x6808;</li>
+<li>&#x5806;: new</li>
+<li>&#x81EA;&#x7531;&#x5B58;&#x50A8;&#x533A;: malloc&#x5206;&#x914D;&#x7684;&#x5185;&#x5B58;</li>
+<li>&#x5168;&#x5C40;/&#x9759;&#x6001;&#x5B58;&#x50A8;&#x533A;&#xFF1A;&#x5B58;&#x653E;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x548C;&#x9759;&#x6001;&#x53D8;&#x91CF;</li>
+<li>&#x5E38;&#x91CF;&#x533A;&#xFF1A;&#x5B58;&#x653E;&#x5E38;&#x91CF;</li>
+</ul>
+<h2 class="mume-header" id="63-%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E6%A0%88%E6%BA%A2%E5%87%BA">6.3 &#x5185;&#x5B58;&#x6CC4;&#x9732;/&#x6808;&#x6EA2;&#x51FA;</h2>
+
+<ul>
+<li>&#x5185;&#x5B58;&#x6CC4;&#x9732;: &#x5806;&#x4F7F;&#x7528;&#x4E86;&#xFF0C;&#x6CA1;&#x6E05;&#x7A7A;&#xFF0C;&#x5185;&#x5B58;&#x5927;&#x91CF;&#x6D6A;&#x8D39;</li>
+<li>&#x6808;&#x6EA2;&#x51FA;: &#x4F7F;&#x52B2;&#x589E;&#x52A0;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#xFF0C;&#x6808;&#x7528;&#x5B8C;&#x4E86;</li>
+</ul>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

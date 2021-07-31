@@ -37,3 +37,9 @@
 ## UI设计
 
 * [排版基础](https://spite-triangle.github.io/algorithms/UI/Layout/layout.html)
+
+## 笔记
+
+* [c/c++](https://spite-triangle.github.io/algorithms/cpp/c_c++.html)
+
+* [Linux](https://spite-triangle.github.io/algorithms/linux/Linux.html)
