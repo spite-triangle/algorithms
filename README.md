@@ -43,3 +43,5 @@
 * [c/c++](https://spite-triangle.github.io/algorithms/cpp/c_c++.html)
 
 * [Linux](https://spite-triangle.github.io/algorithms/linux/Linux.html)
+
+* [刷题](https://spite-triangle.github.io/algorithms/exam/note.html)
