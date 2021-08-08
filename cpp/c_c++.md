@@ -26,11 +26,12 @@
 
 ## 1.3 内联函数
 
-&emsp;&emsp;使用inline修饰的<font color="#4c9df8">具体函数实现，非声明</font>。对于编译器承认的inline函数，将会直接把代码拷贝到函数调用位置。
+&emsp;&emsp;使用inline修饰的<font color="#4c9df8">具体函数实现，非声明</font>。<font color="#f44336">编译期间</font>对于编译器承认的inline函数，将会直接把代码拷贝到函数调用位置。
 
 - 建议性质的关键字，只有简单的函数会被编译器承认。
-- 类的函数都是有inline修饰
+- 默认地，类中定义的所有函数，除了**虚函数**之外，会隐式地或自动地当成内联函数; **虚函数也能用inline修饰，建议性质的。**
 - 泛型定义
+
 
 ## 1.4 重定义
 &emsp;&emsp; **#include会将头文件复制，同一个东西头文件实现一次，源文件实现一次就会触发重定义。** 
@@ -88,6 +89,19 @@
 
 ## 3.2 const
 
+```c++
+// 限定内容
+const int*p;
+int const *p;
+
+// 限定指针
+ int*const p;
+
+// 都限定
+const int*const p;
+```
+<font color="#f44336"> `不可变的 := 可变的` ，反过来不行。</font>
+
 ### 1. c
 
 - const变量: 可以通过指针修改值，就是一个建议。
@@ -138,7 +152,7 @@
     - 不可传递
 
 ## 3.8 储存类型符
-- auto：所有**局部变量**默认的存储类
+- auto：所有**局部变量**默认的存储类， **对于C， 块语句中也可定义局部变量，形参也是。** 
 - register: 存储在寄存器中（只是建议，具体实现看编译器）。
 - static：局部修饰变量后改变了生存期;全局变量修饰后改变了作用域
 - extern：引入其他C文件中已定义的非static全局变量;可以在函数的内外声明变量或者函数。
@@ -154,79 +168,80 @@
 
 ### 2. 用法
 
-1.   `cin >>` 
-&emsp;&emsp;连续从键盘读取想要的数据，<font color="#f44336">以空格、tab 、换行为分隔符</font>。
-```c++
-	char a;
-	int b;
-	float c;
-	string 
-	cin>>a>>b>>c;
-```
+1. `cin >>` 
+    - 连续从键盘读取想要的数据，<font color="#f44336">以空格、tab 、换行为分隔符</font>。
 
-- 当 `cin >>`  从缓冲区中读取数据时，**若缓冲区中第一个字符是空格、tab或换行这些分隔符时，cin>> 会将其<font color="#f44336">忽略并清除</font>，继续读取下一个字符**; 若缓冲区为空，则继续等待。<font color="#f44336">但是如果读取成功，字符后面的分隔符是残留在缓冲区的，cin>> 不做处理。</font>
-- 不想略过空白字符，那就使用 noskipws 流控制。
-- `cin >>`的返回值为  `cin` ;当输入 `EOF` （windows:ctrl+z， Linux:ctrl+d）时， `cin >>` 会返回0。
-```c++
-int a;
-// 当输入 EOF 时，可以终止循环
-while（cin >> a）{
+        ```c++
+            char a;
+            int b;
+            float c;
+            string 
+            cin>>a>>b>>c;
+        ```
 
-}
-```
+   - 当 `cin >>`  从缓冲区中读取数据时，**若缓冲区中第一个字符是空格、tab或换行这些分隔符时，cin>> 会将其<font color="#f44336">忽略并清除</font>，继续读取下一个字符**; 若缓冲区为空，则继续等待。<font color="#f44336">但是如果读取成功，字符后面的 **空白符号** 是残留在缓冲区的，cin>> 不做处理。</font>
+   - 不想略过空白字符，那就使用 noskipws 流控制。
+   - `cin >>`的返回值为  `cin` ;当输入 `EOF` （windows:ctrl+z， Linux:ctrl+d）时， `cin >>` 会返回0。
+  
+        ```c++
+        int a;
+        // 当输入 EOF 时，可以终止循环
+        while（cin >> a）{
+
+        }
+        ```
 
 
 2.  `cin.get()` 
 
-&emsp;&emsp;<font color="#f44336">缓冲区没有东西时，会堵塞等待。</font>
+    &emsp;&emsp;<font color="#f44336">缓冲区没有东西时，会堵塞等待。</font>
 
-```c++
-int get();
-istream& get(char& var);
-istream& get( char* s, streamsize n );
-istream& get( char* s,  streamsize  n, char delim);
-```
+    ```c++
+    int get();
+    istream& get(char& var);
+    istream& get( char* s, streamsize n );
+    istream& get( char* s,  streamsize  n, char delim);
+    ```
  **读取字符** :
 
-```c++
+    ```c++
 
-#include <iostream>
-using namespace std;
+    #include <iostream>
+    using namespace std;
 
-int main() {
-	char a;
-	char b;
-	a=cin.get();
-	cin.get(b);
-	cout << a << b <<endl;
-	return 0;
-}
+    int main() {
+        char a;
+        char b;
+        a=cin.get();
+        cin.get(b);
+        cout << a << b <<endl;
+        return 0;
+    }
 
-```
+    ```
 
-- <font color="#f44336">从输入缓冲区读取单个字符时不忽略分隔符，直接将其读取。</font>
-
+    - <font color="#f44336">从输入缓冲区读取单个字符时不忽略分隔符，直接将其读取。</font>
 
  **读取行** 
-```c++
-istream& get(char* s, streamsize n)
-istream& get(char* s, size_t n, char delim)
-```
--  `s` ，接收字符串用的数组
--  `n` ，读取个数。<font color="#f44336">实际读取个数为  `n - 1` ，留了一个给  `\0` </font>
--  `delim` ，指定终止符
-
-- <font color="#f44336">读取一行时，遇到换行符时结束读取，但是不对换行符进行处理，**换行符(结束符)仍然残留在输入缓冲区。**</font>
+    ```c++
+    istream& get(char* s, streamsize n)
+    istream& get(char* s, size_t n, char delim)
+    ```
+    -  `s` ，接收字符串用的数组
+    -  `n` ，读取个数。<font color="#f44336">实际读取个数为  `n - 1` ，留了一个给  `\0` </font>
+    -  `delim` ，指定终止符
+    - **换行符(结束符)会被留在缓冲区**，<span style="color:red;font-weight:bold"> 但末尾其余空白符会被读取。 </span>
 
 
 3. `cin.getline（）`  **读取行** 
 
-```c++
-istream& getline(char* s, streamsize count); //默认以换行符结束
-istream& getline(char* s, streamsize count, char delim);
-```
+    ```c++
+    istream& getline(char* s, streamsize count); //默认以换行符结束
+    istream& getline(char* s, streamsize count, char delim);
+    ```
 
-- <font color="#f44336">**换行符(结束符)会被清理掉。**</font>
+    - **换行符(结束符)会被清理掉**，<span style="color:red;font-weight:bold"> 但末尾其余空白符会被读取。 </span>
+    -  `getline(cin,string,"结束符")` 功能更强。<font color="#f44336">传入的是  `cin`  ，不是  `stdin`  </font>
 
 ### 3. cin 清空输入缓冲区
 
@@ -253,7 +268,74 @@ fflush(stdin);
 
 - 当局部变量与全局变量重名，可以修饰变量，访问全局变量。<font color="#f44336">仅c++支持</font>
 
+```c++
+int x;  // Global x 
+ 
+int main() 
+{ 
+  int x = 10; // Local x 
+  cout << "Value of global x is " << ::x; 
+  cout << "\nValue of local x is " << x;  
+  return 0; 
+} 
+```
 
+- 在类之外定义函数
+
+- 访问类的全局变量
+
+```c++
+class Test 
+{   
+public: 
+    static int x; 
+};
+
+int Test::x = 1;
+
+void main(){
+    Test::x;
+}
+
+```
+
+- 如果有多个继承，父类变量名重名，子类可以做区分。
+
+- 两个命名空间重命名
+
+- 访问内部类
+
+```c++
+#include<iostream> 
+using namespace std; 
+ 
+class outside 
+{ 
+public: 
+      int x; 
+      class inside 
+      { 
+      public: 
+            int x; 
+            static int y;  
+            int foo(); 
+ 
+      }; 
+}; 
+int outside::inside::y = 5;  
+ 
+int main(){ 
+    outside A; 
+    outside::inside B; 
+ 
+}
+```
+
+## 3.10 include
+
+-  `#include<>`   :表示只从从标准库文件目录下搜索，对于标准库文件搜索效率快。
+
+-  `#include""`    :表示首先从用户工作目录下开始搜索，对于自定义文件搜索比较快，然后搜索标准库。
 
 
 ---
@@ -324,6 +406,89 @@ fflush(stdin);
 | 指针  |   可以   |   可以   |   指针的字节   |
 | 数组  |   不行   |   可以   | 声明空间的字节 |
 
+## 4.6 字符串
+
+### 1. c风格
+
+- 字符串结尾标志为  `\0` 
+-  ` " " ` : 自带 `\0` 
+-  `strcpy，strncpy` 不会在末尾加 `\0`，<font color="#f44336">dest还得手动加终止</font>
+-  `strcat` : <font color="#4c9df8">会自动加  `\0` </font>
+
+```
+#include <string.h>
+
+// 创建
+char str[] = "RUNOOB";
+char *str =  "fuck you";
+char str[7] = {'R', 'U', 'N', 'O', 'O', 'B', '\0'};
+
+// 拷贝字符串
+strcpy(char *dest, const char *src); // 将src拷贝到dest，拷贝以 \0 作终止;
+char *strncpy(char *dest, const char *src, size_t n); // n指定长度，更安全
+
+// 拼接字符串
+char *strcat(char *dest, const char *src); // 往dest上加字符串
+
+// 字符串长度
+strlen(str); // \0 终止
+
+// 比较字符串
+int strcmp(const char *s1, const char *s2); // 相同返回 0
+
+// 查找
+char *strchr(const char *str, int c); //返回第一个字符位置，没有返回NULL
+char *strstr(const char *haystack, const char *needle); // 返回第一个字符串位置，没有返回NULL
+```
+
+### 2.  c++字符串
+
+-  `string` 是一个对象
+-  `string` 的结尾没有结束标志  `\0` 
+-  `==` 可以用来判断字符串是否相同
+
+```c++
+#include <string>
+
+// 创建
+string str; // s1的值为NULL
+string str = "c plus plus";
+string str(c风格);
+
+// 字符串长度
+str.length();
+
+// 转c风格
+str.c_str();
+
+// 访问字符
+str[i];
+
+// 数字转字符串
+string to_string(int value);
+string to_string(long value);
+string to_string(double value);
+
+// 字符转数字
+atoi(const char*);
+stoi(const string&);
+strtoi(const char *);
+
+// 插入
+string& insert (size_t pos, const string& str);
+
+// 删除
+string& erase (size_t pos = 0, size_t len = npos);
+
+// 获取子串
+string substr (size_t pos = 0, size_t len = npos) const;
+
+// 查找 返回第一个找到的位置，没找到返回一个无穷数
+size_t find (const string& str, size_t pos = 0) const;
+size_t find (const char* s, size_t pos = 0) const;
+find_first_of(const string& str); // 子字符串和字符串共同具有的字符在字符串中首次出现的位置
+
+```
 
 
 ---
@@ -355,7 +520,15 @@ fflush(stdin);
   
 ## 5.3 继承
 
-&emsp;&emsp;<font color="#f44336">当私有继承和保护继承时，父类指针(引用)无法指向子类。默认为私有继承。</font>
+&emsp;&emsp;<font color="#f44336">当私有继承和保护继承时，父类指针(引用)无法指向子类。默认为私有继承。</font> **防止多重继承，出现属性多次定义，继承时，还要使用 virtual 进行修饰。**
+&emsp;&emsp; **在子类中均存在但不可访问** 
+- 公有继承基类的private
+
+- 保护继承中基类的private
+
+- 私有继承中基类的private和protected和public， 
+
+
 
 ## 5.4 重载/多态
 
@@ -396,7 +569,7 @@ fflush(stdin);
 
 ## 5.7 构造函数
 
-- 构造函数不能以本类的对象作为**唯一参数**
+- **普通构造函数**不能以本类的对象作为**唯一参数**
 - **默认拷贝构造函数**: 对源对象的逐个字节的复制，成员变量和源对象相同，由编译器自动生成
 - **拷贝构造函数**：构造函数的一种，只有一个本类的引用的参数，用不用const修饰都一样。
 - **调用拷贝构造函数，不调用普通构造**: 
@@ -428,10 +601,44 @@ fflush(stdin);
 - 内存泄露: 堆使用了，没清空，内存大量浪费
 - 栈溢出: 使劲增加局部变量，栈用完了
 
----
- # 七、进程线程
 
-## 7.1 进程
+## 6.4 字符存储编码
+ 
+- ASCII 码: 使用指定的7 位或8 位二进制数组合来表示128 或256 种可能的字符。
+
+- BCD码: （Binary-Coded Decimal‎）亦称二进码十进数或二-十进制代码。用4位二进制数来表示1个十进制数中的0~9这10个数码。
+
+- 内码: 指汉字系统中使用的二进制字符编码。 
+
+## 6.5 对象的内存分布
+
+
+![alt text](https://img-blog.csdn.net/20150522023810465?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGppYW5odWk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast "内存分布")
+
+- 父类的 `vptr` 放第一个，接着是父类的非static属性，最后放子类的属性
+- 属性存放顺序与定义顺序一样
+- 对象变量指向第一个内存位置的地址
+- <font color="#f44336">防止多重继承，出现属性多次定义，继承时，使用 virtual 进行修饰。</font>
+
+## 6.6 代码地址
+
+- 运行时地址起始位置：它芯片公司指定的一开始运行代码的位置。
+
+- 运行地址: 就在从运行时地址起始位置（包括起始位置）往后排都是运行时地址。(程序代码被搬过来执行)
+
+- 链接地址起始位置：链接脚本设定，这个位置在程序链接之后，就会确定下来。(用来计算偏移量的伪地址，之后重定向)
+
+- 链接地址: 就是从链接地址起始位置（包括起始位置）往后排都是链接地址。(类似汇编地址)
+
+- 加载地址: 从flash的那个地方开始读取程序，加载内存中去。
+
+- 存储地址: 程序存储在哪儿的。
+
+
+---
+# 七、进程线程
+
+ ## 7.1 进程
 
 ### 1. 创建
 
@@ -528,7 +735,7 @@ pid_t fork(void);
 - <font color="#4c9df8"> **非R 变 R状态** </font>
 
 ---
- # 八、STL
+# 八、STL
 ## 8.1 简介
 &emsp;&emsp;STL（Standard Template Library），即标准模板库，是一个具有工业强度的，高效的C++程序库。该库包含了诸多在计算机科学领域里所常用的**基本数据结构**和**基本算法**。
 - 数据结构和算法的分离
@@ -553,6 +760,8 @@ pid_t fork(void);
 - 关联式容器（Associated containers)
     -  Set/Multiset: Set内的相同数值的元素只能出现一次; Multisets内可包含多个数值相同的元素。
     - Map/Multimap: map只允许key唯一；multimap中key可以重复使用；
+
+&emsp;&emsp;  `set map multi set multimap` 通过红黑实现，无序 `unoder_map unorder_set` 通过哈希表实现。
  
 ## 8.3 分配器
 &emsp;&emsp;<font color="#f44336">容器类自动申请和释放内存，无需new和delete操作。</font>
@@ -647,6 +856,8 @@ pid_t fork(void);
 
 ## 8.8 栈 stack
 
+- <font color="#f44336"> **没有迭代器功能。** </font>
+
 ```c++
 #include <stack>
 #include <vector>
@@ -661,6 +872,8 @@ s.top();    //返回栈顶元素的值，但不删除此元素
 s.push(item);   //在栈顶压入新元素item
 ```
 ## 8.9 队列 queue
+
+- <font color="#f44336"> **没有迭代器功能。** </font>
 ```c++
 queue<int> q; //priority_queue<int> q;
 q.empty();  //判断队列是否为空
@@ -863,4 +1076,155 @@ public:
     } 
 };
 set<string,Compare> names;
+```
+
+## 8.13 deque
+
+```c++
+    #include <deque>
+
+    // 创建
+    deque<string> que;
+    
+    // 首尾操作 
+    que.push_back(item);
+    que.pop_back();
+    que.push_front();
+    que.pop_back();
+    que.front();
+    que.back();
+
+    // 删除
+    que.erase(it);
+    que.clear();
+
+    // 查找 没有查找 用 #include<algorithm> 库中的 find
+
+```
+
+
+---
+# 九、工具
+
+## 9.1 math
+
+```
+#include<math.h>
+
+// 绝对值
+int abs(int);
+double fabs(double);
+
+// 四舍五入
+double round(double);
+
+// 取整
+double ceil(double num); // 向上取整
+double floor(double num);// 向下取整
+
+// 余数
+double fmod(double num，double base);
+%; 只能用于int;
+
+```
+## 9.2 regex
+
+-  `\b` : 字符边界
+-  `.` : 除 `\n` 以外所有字符
+-  `\w` : 等价于 `[(0-9)(a-z)(A-Z)(_)]` ，数字，字母，下划线
+-  `\W` : 上面取反 `[^(0-9)(a-z)(A-Z)(_)]`
+-  `\d` : 数字
+-  `\D` : 上面取反
+-  `\s` : 空白符(空格，制表符，换行)
+-  `\S` : 上面取反
+-  `regex_search` : <font color="#f44336">只返回第一次匹配到的子串</font>
+- <font color="#4c9df8">上面的匹配字符，编程用时还要再加一个 `\` </font>
+
+```c++
+#include <regex>
+
+// 定义表达式
+regex reg("[a-z0-9]+");
+
+// 是否匹配
+bool regex_match(string,regex);//全匹配
+bool regex_search(string,regex);//子串匹配，只匹配第一次找到的
+
+// 捕获
+bool reg_search(string，smatch，regex);
+smatch.size(); //匹配到的个数: 表达式匹配 + 捕获匹配
+smatch.str(0); // 整个正则匹配到的部分
+smatch.str(i); // 0之后的，都是捕获部分
+smatch.prefix().str(); // 未匹配的前部分
+smatch.prefix().str();// 未匹配的后部分
+```
+
+## 9.2 动态规划
+
+ **动态规划问题的一般形式就是求最值**。
+
+- **重叠子问题**: 最终点问题是由**某一单步小问题**的重复，这些 **小问题的求解可能会重复计算**。
+- **最优子结构**: 当前步骤的最优只与"上一步"有关。根据这个特点可以**状态压缩**
+- **状态转移方程**: 递推式，解决问题的核心。
+
+### 1. 解题框架
+
+1. 明确 base case: 初始条件
+1. 明确「状态」: **推进子问题向大问题演变的变量。**
+1. 明确「选择」: 也就是导致「状态」产生变化的行为。**「状态」能取哪些值**
+1. 定义 dp 数组/函数:  dp值 = f（当前状态）
+    - dp函数: 参数就是上面说到的「状态」。函数的返回值就是题目要求我们计算的量。
+    - **dp 数组**：当状态为「状态」，问题结果为dp[状态]
+
+```c++
+
+# 初始化
+dp[] = init
+
+# 边界条件
+dp[0][0][...] = base
+
+# 进行状态转移
+for 状态1 in 状态1的所有取值：
+    for 状态2 in 状态2的所有取值：
+        for ...
+            dp[状态1][状态2][...] = 求最值(选择1，选择2...)
+```
+### 2. 流程方向
+
+- **自顶向下: 从目标开始，把大问题拆解小问题，直到到初始条件。**
+    - 暴力递归: 把大问题拆成小的，递归下去
+    - **备忘录递归**: 算过的值记录下来，不在重复算
+-  **自底向上: 从初始开始，根据递推式，一步一步迭代，直到目标结束。** 
+    - **dp数组**: 从初始状态，根据递推关系，算到目标状态，**循环数组，不用递归。**
+
+### 3. 重复子问题的确定
+
+```c++
+    dp[i][j] = min{
+        dp[i-1][j] + 1,
+        dp[i][i-1] + 1,
+        dp[i-1][j-1] + 1
+    }
+```
+&emsp;&emsp;**当从`dp[i-1][j-1]`过度到`dp[i][j]`的求解有多种路径时，就存在解重叠的情况。采用备忘录和dp数组解决。**
+
+### 4. 状态遍历顺序
+
+<center>
+
+![dynamic](../image/dynamic.jpg)
+</center>
+
+> 1. **确定二维表`dp[][]`初始值**
+> 1. **确定递推式`dp[i][j]`的依赖情况（上图左边）**
+> 1. **根据依赖关系填充二维表，满足横向填充或者纵向填充**
+
+```c++
+    // i = 0, j = 0 的情况是边界条件，已经初始化好了。 
+    for (int i = 1; i <= m; i++){
+        for (int j = 1; j <= n;j++){
+            dp[i][j] = f(dp[i-1][j-1],dp[i][j-1],dp[i-1][j]);
+        }
+    }
 ```
