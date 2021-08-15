@@ -1,3 +1,5 @@
+---
+toc:contents
 
 ---
 # c/c++笔记
@@ -613,7 +615,10 @@ find_first_of(const string& str); // 子字符串和字符串共同具有的字�
 ## 6.5 对象的内存分布
 
 
-![alt text](https://img-blog.csdn.net/20150522023810465?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGppYW5odWk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast "内存分布")
+<center>
+
+![memory](../image/objectmemory.png)
+</center>
 
 - 父类的 `vptr` 放第一个，接着是父类的非static属性，最后放子类的属性
 - 属性存放顺序与定义顺序一样
@@ -763,6 +768,22 @@ pid_t fork(void);
 
 &emsp;&emsp;  `set map multi set multimap` 通过红黑实现，无序 `unoder_map unorder_set` 通过哈希表实现。
  
+
+### 二叉堆
+
+<center>
+
+![heap](../image/heap.jpg)
+</center>
+
+- **完全二叉树**
+    1. 父节点的编号为k，子左节点编号为2k，子右节点的编号为2k+1
+    2. 子节点的编号为x，父节点的编号为$\lfloor x/2 \rfloor$
+    3. 从上往下最后一个父节点的编号为$\lfloor n/2 \rfloor,n总节点$
+- **数组存储**
+- **最大二叉堆**：<span style="color:red;font-weight:bold"> 每个节点 >= 子节点 </span>
+- **最小二叉堆**：<span style="color:red;font-weight:bold"> 每个节点 <= 子节点 </span>
+
 ## 8.3 分配器
 &emsp;&emsp;<font color="#f44336">容器类自动申请和释放内存，无需new和delete操作。</font>
 
@@ -783,6 +804,18 @@ pid_t fork(void);
     }
 ```
 
+- <span style="color:red;font-weight:bold"> 带迭代器的容器遍历 </span>
+
+```c++
+    // 只读
+    for(auto item:containers){
+
+    }
+    // 可修改 能修改的值
+    for(auto& item:containers){
+
+    }
+```
 
 ## 8.5 算法
 
@@ -1104,7 +1137,7 @@ set<string,Compare> names;
 
 
 ---
-# 九、工具
+# 九、算法
 
 ## 9.1 math
 
@@ -1228,3 +1261,1185 @@ for 状态1 in 状态1的所有取值：
         }
     }
 ```
+
+## 9.3 排序
+
+### 1. 冒泡排序
+
+- <span style="color:red;font-weight:bold"> 稳定排序，排序之后，一样的数据输入顺序不会乱掉 </span>
+
+```c++
+    string str;
+    for (int i = 0; i < str.size() - 1; i++)
+    {
+        for (int j = 0; j < str.size() - i - 1; j++)
+        {
+            if (str[j] < str[j+1])
+            {
+                char temp = str[j];
+                str[j] = str[j+1];
+                str[j+1] = temp; 
+            }
+        }
+    }
+```
+
+### 2. 桶排序
+
+- <span style="color:red;font-weight:bold"> 桶排序可以实现稳定排序 </span>
+
+```c++
+    int* in;
+    // 构建一个桶
+    vector< vector<int> > bucket(amount,vector<int>());
+
+    // 排序
+    for(int i=0; i < size(in); i++){
+
+        bucket[ sortRule(in[i]) ].push_back(in[i]);
+
+    }
+
+    // 输出
+    for(int i=0; i < bucket.size();i++){
+        if(bucket[i].empty()){
+            continue;
+        }
+
+        for(int j=0; j < bucket[i].size();j++){
+            bucket[i][j];
+        }
+
+    }
+```
+
+### 3. 快速排序
+
+若要对`nums[lo..hi]`  进行排序，我们先找一个分界点 p，通过交换元素使得 nums[lo..p-1] 都小于等于 nums[p]，且 nums[p+1..hi] 都大于 nums[p]，然后递归地去 nums[lo..p-1] 和 nums[p+1..hi] 中寻找新的分界点，最后整个数组就被排序了。
+
+
+## 9.4 链表
+
+### 1. 构建链表
+
+- <span style="color:red;font-weight:bold"> 在头部叠加 </span>
+
+```c++
+    void appendNode(int val){
+        Node* newNode = new Node(val);
+        if (this->head == NULL)
+        {
+            this->last = newNode;
+            this->head = newNode;
+        }else{
+            // 在头部叠加
+            newNode->next = this->head;
+            this->head = newNode;
+        }
+        size++;
+    } 
+```
+
+- <span style="color:red;font-weight:bold"> 在尾部增加 </span>
+
+```c++
+    void pushNode(int val){
+        Node *newNode = new Node(val);
+        if (this->head == NULL)
+        {
+            this->head = newNode;
+            this->last = newNode;
+        }else{
+            // 在尾部添加
+            this->last->next = newNode;
+            this->last = newNode;
+        }
+        size ++;
+    }
+```
+
+### 2. 逆向
+
+- **整体逆向: 靠递归的返回过程，完成反转**。
+```c++
+    ListNode reverse(ListNode head) {
+
+    // 深入的终止调节
+    if (head.next == null) return head;
+
+    // 返回的链表的尾节点是 head.next
+    ListNode last = reverse(head.next);
+
+    // 在尾节点增加一个节点
+    head.next.next = head;
+    
+    // 断开之前方向的链接
+    head.next = null;
+    
+    return last;
+}
+```
+- **从首开始的n个局部逆向:** **将`n+1`节点位置储存，通过上面递归进行逆向，最后把 `n+1` 节点接回去。**
+
+```c++
+ListNode successor = null; // 记录第 n + 1 个节点
+
+// 反转以 head 为起点的 n 个节点，返回新的头结点
+ListNode reverseN(ListNode head, int n) {
+    if (n == 1) { 
+        // 记录第 n + 1 个节点
+        successor = head.next;
+        return head;
+    }
+    // 以 head.next 为起点，需要反转前 n - 1 个节点
+    ListNode last = reverseN(head.next, n - 1);
+
+    head.next.next = head;
+    // 让反转之后的尾节点 head 和后面的节点连起来
+    head.next = successor;
+    return last;
+}
+```
+
+- **对m到n的节点进行逆向:** **找到对`m-1`节点进行记录，然后用上面方法逆向，然后接回去。**
+
+```Java
+// 找到第m个节点，然后返回这个节点
+ListNode reverseBetween(ListNode head, int m, int n) {
+    // base case
+    if (m == 1) {
+        return reverseN(head, n);
+    }
+    // 前进到反转的起点触发 base case，n也用减 1 ，一会儿反转是按照总长度来的
+    head.next = reverseBetween(head.next, m - 1, n - 1);
+    return head;
+}
+```
+
+### 3. 一块一块逆向
+
+- **循环实现:** **将当前节点，用头方向增长的方式，重新生成一个链表**
+
+```c++
+    void reverse(Node* head){
+        Node* inverseHead = NULL;
+        Node* currentNode = head;
+        Node* temp = NULL;
+
+        this->last = currentNode;
+
+        while ( currentNode != NULL)
+        {
+            // 由于还要用，临时存一下
+            temp = currentNode->next;
+
+            // 将当前的节点组成新的链表，采用头部增长的方式 
+            currentNode->next = inverseHead;
+            inverseHead = currentNode;
+
+            // 更新
+            currentNode = temp;
+        }
+
+        this->head = inverseHead;
+    }
+```
+
+- **块逆向:** **递归深入拆分块，回退拼接块**
+
+    - `reverse(a, b)`: **翻转的区间为：[a,b)**
+
+```c++
+ListNode reverseKGroup(ListNode head, int k) {
+    if (head == null) return null;
+    // 区间 [a, b) 包含 k 个待反转元素
+    ListNode a, b;
+    a = b = head;
+    // 循环完毕后，b已经到了 a+k ，[a，b]中间间隔了 k+1 个节点了
+    for (int i = 0; i < k; i++) {
+        // 不足 k 个，不需要反转，base case
+        if (b == null) return head;
+        b = b.next;
+    }
+    
+    // 进行[a，b)的翻转，a就是尾巴，入栈
+    ListNode newHead = reverse(a, b);
+
+    // 出栈，将前面拆分的块又接回去
+    a.next = reverseKGroup(b, k);
+    return newHead;
+}
+```
+
+## 9.5 回文
+
+### 1. 字符遍历找回文
+
+```c++
+string palindrome(string& s, int l, int r) {
+    // 防止索引越界
+    while (l >= 0 && r < s.size()
+            && s[l] == s[r]) {
+        // 向两边展开
+        l--; r++;
+    }
+    // l与r在退出循环时，又多算了一次，所以要还原
+    return s.substr(l + 1, r - l - 1);
+}
+```
+
+### 2. 判断链表是否是回文
+
+那么最简单的办法就是，把原始链表反转存入一条新的链表，然后比较这两条链表是否相同。
+
+```Java
+// 左侧指针
+ListNode left;
+
+boolean isPalindrome(ListNode head) {
+    left = head;
+    return traverse(head);
+}
+
+boolean traverse(ListNode right) {
+    if (right == null) return true;
+    boolean res = traverse(right.next);
+    // 后序遍历代码
+    res = res && (right.val == left.val);
+    left = left.next;
+    return res;
+}
+```
+
+## 9.6 双指针
+
+### 1. 快慢指针
+
+快慢指针一般都初始化指向链表的头结点`head`，前进时快指针`fast`在前，慢指针`slow`在后。
+
+- **判定链表中是否含有环:** <font color="#FF0010">`fast`的移动速度为`slow`的两倍。</font>
+
+```Java
+boolean hasCycle(ListNode head) {
+    ListNode fast, slow;
+    fast = slow = head;
+    while (fast != null && fast.next != null) {
+        fast = fast.next.next;
+        slow = slow.next;
+
+        if (fast == slow) return true;
+    }
+    return false;
+}
+```
+
+- **已知链表中含有环，返回这个环的起始位置**
+
+```Java
+ListNode detectCycle(ListNode head) {
+    ListNode fast, slow;
+    fast = slow = head;
+    while (fast != null && fast.next != null) {
+        fast = fast.next.next;
+        slow = slow.next;
+        if (fast == slow) break;
+    }
+    // 上面的代码类似 hasCycle 函数
+    slow = head;
+    while (slow != fast) {
+        fast = fast.next;
+        slow = slow.next;
+    }
+    return slow;
+}
+```
+
+<center>
+
+![double point](../image/doublePoint.jpeg)
+</center>
+
+`fast`一定比`slow`多走了k步，这多走的k步其实就是`fast`指针在环里转圈圈，所以**k的值就是环长度的「整数倍」**。
+
+- **链表的中间位置**
+
+
+```Java
+ListNode middleNode(ListNode head) {
+    ListNode fast, slow;
+    fast = slow = head;
+    while (fast != null && fast.next != null) {
+        fast = fast.next.next;
+        slow = slow.next;
+    }
+    // slow 就在中间位置
+    return slow;
+}
+```
+链表的长度是**奇数**，`slow`恰巧停在**中点位置**
+链表的长度是**偶数**，`slow`最终的位置是**中间偏右**：
+
+- **寻找链表的倒数第n个元素**
+
+让快指针先走n步，然后快慢指针开始同速前进;这样当快指针走到链表末尾null时，慢指针所在的位置就是倒数第n个链表节点（n不会超过链表长度）
+
+```Java
+ListNode removeNthFromEnd(ListNode head, int n) {
+    ListNode fast, slow;
+    fast = slow = head;
+    // 快指针先前进 n 步
+    while (n-- > 0) {
+        fast = fast.next;
+    }
+    if (fast == null) {
+        // 如果此时快指针走到头了，
+        // 说明倒数第 n 个节点就是第一个节点
+        return head.next;
+    }
+    // 让慢指针和快指针同步向前
+    while (fast != null && fast.next != null) {
+        fast = fast.next;
+        slow = slow.next;
+    }
+    // slow.next 就是倒数第 n 个节点，删除它
+    slow.next = slow.next.next;
+    return head;
+```
+
+- **有序数组/链表去重**
+
+数组`nums[]`有顺序，`slow`走在后面，快指针`fast`走在前面探路，比较`nums[fast]`与`nums[slow]`，找到不重复的元素就告诉`slow`并让`slow`前进一步。**`nums[0  slow]`便是去重后的数组。**
+
+```Java
+int removeDuplicates(int[] nums) {
+    if (nums.length == 0) {
+        return 0;
+    }
+    int slow = 0, fast = 0;
+    while (fast < nums.length) {
+        if (nums[fast] != nums[slow]) {
+            slow++;
+            // 维护 nums[0..slow] 无重复
+            nums[slow] = nums[fast];
+        }
+        fast++;
+    }
+    // 数组长度为索引 + 1
+    return slow + 1;
+}
+```
+
+```Java
+ListNode deleteDuplicates(ListNode head) {
+    if (head == null) return null;
+    ListNode slow = head, fast = head;
+    while (fast != null) {
+        if (fast.val != slow.val) {
+            // nums[slow] = nums[fast];
+            slow.next = fast;
+            // slow++;
+            slow = slow.next;
+        }
+        // fast++
+        fast = fast.next;
+    }
+    // 断开与后面重复元素的连接
+    slow.next = null;
+    return head;
+}
+```
+
+**注: 由于c++还需要对new的对象进行手动释放，所以可以用数组来储存链表节点，或者使用智能指针。**
+
+- **删除目标元素，不改变数组顺序**
+
+不要求数组有序，如果`fast`遇到需要去除的元素，则直接跳过，否则就告诉`slow`指针，并让`slow`前进一步。**`nums[0   slow-1]`是去除元素后的数组**
+
+```Java
+int removeElement(int[] nums, int val) {
+    int fast = 0, slow = 0;
+    while (fast < nums.length) {
+        if (nums[fast] != val) {
+            nums[slow] = nums[fast];
+            slow++;
+        }
+        fast++;
+    }
+    return slow;
+}
+```
+- **移动零**
+
+上一问题的变种
+
+### 2. 左右指针
+
+一般初始化为: `left = 0, right = nums.length - 1`
+
+- **二分查找**
+- **翻转数组**
+- **双指针，升序列，求两数之和**
+
+
+
+## 9.7 二分法
+
+### 1. 基本的二分搜索
+
+- **`while(left <= right)`一次搜索的区间是：`[left, right]`**
+- **`while(left <= right)` 终止条件：`left == right + 1`**: 就两种情况会终止，1）`right`减过头；2）`left`加过头
+
+```Java
+    int binarySearch(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1; // 注意
+        while(left <= right) {
+            int mid = left + (right - left) / 2;
+            if(nums[mid] == target)
+                return mid;
+            else if (nums[mid] < target)
+                left = mid + 1; // 注意
+            else if (nums[mid] > target)
+                right = mid - 1; // 注意
+        }
+        return -1;
+    }
+```
+
+> **注：**
+> **`nums = [1,2,2,2,3];targe = 2;`找目标的边界，普通二分法无法实现。**
+
+### 2. 寻找左侧边界的二分搜索
+
+- **`while(left <= right)`一次搜索的区间是：`[left, right]`**
+- **`while(left <= right)` 终止条件：`left == right + 1`**: 就两种情况会终止，1）`right`减过头；2）`left`加过头
+- **`left = [0,nums.length]`**
+- <span style="color:red;font-weight:bold"> 返回值含义：`nums`中小于`target`的值的个数 </span>
+- <span style="color:red;font-weight:bold"> `nums`循序排列，`target`在数组`nums`中。 </span>
+
+```Java
+    int left_bound(int[] nums, int target) {
+        int left = 0, right = nums.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] < target) {
+                left = mid + 1;
+            } else if (nums[mid] > target) {
+                right = mid - 1;
+            } else if (nums[mid] == target) {
+                // 别返回，锁定左侧边界
+                right = mid - 1;
+            }
+        }
+        // 最后要检查 left 越界的情况，target值也不在数组中
+        if (left >= nums.length || nums[left] != target)
+            return -1;
+        return left;
+    }
+```
+
+### 3. 寻找右侧边界的二分搜索
+
+- <span style="color:red;font-weight:bold"> 返回值含义：`nums`中大于`target`的值的个数 </span>
+- <span style="color:red;font-weight:bold"> `nums`循序排列，`target`在数组`nums`中。 </span>
+
+```java
+
+int right_bound(int[] nums, int target) {
+    int left = 0, right = nums.length - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] < target) {
+            left = mid + 1;
+        } else if (nums[mid] > target) {
+            right = mid - 1;
+        } else if (nums[mid] == target) {
+            // 别返回，锁定右侧边界
+            left = mid + 1;
+        }
+    }
+    // 最后要检查 right 越界的情况
+    if (right < 0 || nums[right] != target)
+        return -1;
+    return right;
+}
+```
+
+**注：**
+
+- **`while(left < right)` 结束条件为 `left == right`**
+- **`while(left < right)`一次搜索的区间是：`[left, right)`**
+- **`while(left < right)`决定了`left = mid + 1;right = mid;`下一次的搜索区间就是：`[left,mid)`**
+- **`[left, right)`就确定了初始条件：`left = 0, right = nums.length`**
+
+```Java
+int right_bound(int[] nums, int target) {
+    if (nums.length == 0) return -1;
+    int left = 0, right = nums.length;
+
+    while (left < right) {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] == target) {
+            left = mid + 1; // 注意
+        } else if (nums[mid] < target) {
+            left = mid + 1;
+        } else if (nums[mid] > target) {
+            right = mid;
+        }
+    }
+    if(left == 0 || nums[left - 1] != target){
+        return -1;
+    }
+    return left - 1; // 注意
+}
+```
+
+## 9.8 two sum
+
+### 1. 问题
+
+> 给一个数组和一个整数`target`，可以保证数组中存在两个数的和为`target`，返回这两个数的索引。
+>例:
+>输入: `nums = [3,1,3,6],target = 6`
+>返回数组: `[0,2]`
+
+### 2. 双指针暴力枚举
+
+```c++
+void twoSum(int* nums,int target,int * out){
+    for(int i=0;i < nums.size;i++){
+       for(int j=i+1;j < nums.size;j++)            {
+            if(target == nums[i]+nums[j]){
+                out[0]=i;
+                out[1]=j;
+                return;
+            }   
+        } 
+    }
+    
+}
+```
+
+### 3. 哈西表查询第二个值
+
+```c++
+    void twoSumMap(int*nums,int n,int target,int* out){
+        // 存储 值-索引
+        map<int,int> valIndex;
+        for (int i = 0; i < n; i++)
+        {
+            valIndex[nums[i]] = i;
+        }
+
+        // 寻找目标
+        for (int i = 0; i < n; i++)
+        {
+            int other = target - nums[i];
+            // 从 值-索引 中找另一半的值
+            if (valIndex.count(other) > 0 && valIndex[other] != i)
+            {
+                out[0]=i;
+                out[1]=valIndex[other];
+                return;
+            }
+        }
+    }
+```
+
+### 4. 双指针，升序列，求两数之和
+
+```Java
+    int[] twoSum(int[] nums, int target) {
+        int left = 0, right = nums.length - 1;
+        while (left < right) {
+            int sum = nums[left] + nums[right];
+            if (sum == target) {
+                // 题目要求的索引是从 1 开始的
+                return new int[]{left + 1, right + 1};
+            } else if (sum < target) {
+                left++; // 让 sum 大一点
+            } else if (sum > target) {
+                right--; // 让 sum 小一点
+            }
+        }
+        return new int[]{-1, -1};
+    }
+```
+
+### 5. 输出所有不重复的组合
+
+```c++
+    void twoSum(vector<int> &nums,int target){
+        // 先排序
+        sort(nums.begin(),nums.end());
+
+        int left = 0;
+        int right = nums.size() - 1; 
+        int temp;
+
+        while(left < right){
+            int sum = nums[left] + nums[right];
+
+            if (sum < target)
+            {
+                left ++;
+            }else if (sum > target){
+                right --;
+            }else if(sum == target){
+
+                cout << nums[left] << " " << nums[right] << endl;
+
+                // 左边重复
+                temp = nums[left];
+                while(left < right && nums[left] == temp){
+                    left++;
+                }
+
+                // 右边重复
+                temp = nums[right];
+                while(left < right && nums[right] == temp){
+                    right--;
+                } 
+            }
+        }
+    }     
+```
+
+### 6. 3Sum 问题
+
+- `sort()`: 首先进行排序
+- 从左向右依次遍历数组 `nums[index]`
+- `target =target - nums[index]`: **将3sum问题转为2sum问题。**
+- **`nums[index]`还要去重复**
+
+```c++
+    vector< vector<int> > twoSum(vector<int> &nums,int start,int target){
+
+        vector< vector<int> > out;
+        int left = start;
+        int right = nums.size() - 1; 
+        int temp;
+
+        while(left < right){
+            int sum = nums[left] + nums[right];
+
+            if (sum < target)
+            {
+                left ++;
+            }else if (sum > target){
+                right --;
+            }else if(sum == target){
+
+                out.push_back(vector<int>());
+                out[out.size() - 1].push_back(nums[left]);
+                out[out.size() - 1].push_back(nums[right]);
+
+                // 左边重复
+                temp = nums[left];
+                while(left < right && nums[left] == temp){
+                    left++;
+                }        
+                // 右边重复
+                temp = nums[right];
+                while(left < right && nums[right] == temp){
+                    right--;
+                } 
+            }
+        }
+
+        return out;
+    }
+
+    vector< vector<int> > threeSum(vector<int> &nums,int target){
+        // 先排序
+        sort(nums.begin(),nums.end());
+
+        vector< vector<int> > out;
+        int index = 0;
+        int temp;
+        while (index < nums.size() - 2){
+            // target 减去 一个值，将 3sum 变成 2sum
+            vector< vector<int> > res = twoSum(nums,index+1, target - nums[index]);
+
+            // 去重复
+            temp = nums[index];
+            while (index < nums.size() - 2 && nums[index] == temp)
+            {
+                index++;
+            }
+
+            // 将第三个值储存 
+            for(vector<int>& item : res){
+                item.push_back(temp);
+                out.push_back(item);
+            }
+        }
+        
+        return out;
+    }
+
+```
+
+
+
+## 9.9 删除/查找数据O(1)
+
+- 使用`map`存储索引，`vector`存储数据
+    - 查找: 通过`map`找索引，通过索引去`vector`拿数据
+    - 删除: 将最后一个元素与删除元素进行替换，修改`map`，然后再删除索引和数据
+
+## 9.10 单调栈
+
+### 0. 单调栈作用
+
+**根据当前入栈的值，栈内部会维持顺序（递增或递减）。**
+
+- `while (!s.empty() && s.top() <= nums[i])`: **比`nums[i]`小的都滚了，现在`nums[i]`最小，所以`s`是递减的**
+
+- `while (!s.empty() && s.top() >= nums[i])`: **比`nums[i]`大的都滚了，现在`nums[i]`最大，所以`s`是递增的**
+
+```c++
+    void monotonousStack(int* nums,int n){
+        stack<int> s;
+
+        // 值入栈
+        for (int i = n-1; i >= 0; i--){
+            
+            // 确保当前值在栈中是最小的
+            while (!s.empty() && s.top() <= nums[i])
+            {
+                // 栈顶的值小于等于当前值，直接弹出
+                s.pop();
+            }
+
+            // 当前的 nums[i] 入栈
+            s.push(nums[i]);
+            
+        }
+    }
+```
+
+### 1. Next Greater Number
+
+<center>
+
+![next greater](../image/nextGreater.jpeg)
+</center>
+
+**主要解决问题 Next Greater Number: 在当前数组中，比当前数更大的下一个数**
+
+- `for` 循环: **要从后往前扫描元素**，因为我们借助的是栈的结构，倒着入栈，其实是正着出栈。
+
+- `while`循环: 是把两个“高个”元素之间的元素排除
+
+```c++
+    void nextGreater(int* nums,int n,int* out){
+        stack<int> s;
+        for (int i = n-1; i >= 0; i--){
+            
+            while (!s.empty() && s.top() <= nums[i])
+            {
+                // 栈顶的值小于等于当前值，滚蛋
+                s.pop();
+            }
+
+            // 栈空的：没找到；不为空：栈顶就是
+            if (s.empty())
+            {
+                out[i] = -1;
+            }else{
+                out[i] = s.top();
+            }
+
+            // 当前的 nums[i] 入栈
+            s.push(nums[i]);
+        }
+    }
+```
+
+### 2. 「循环」的Next Greater Number
+
+将数组扩展一倍，然后用单调栈
+
+### 3. 与 Next Greater Number之间的距离
+
+```c++
+    void nextGreaterInterval(int* nums,int n,int* out){
+        // 栈中存放索引
+        stack<int> s;
+        for (int i = n-1; i >= 0; i--){
+
+            while (!s.empty() && nums[s.top()] >= nums[i])
+            {
+                // 栈顶的值小于等于当前值，索引滚蛋
+                s.pop();
+            }
+
+            // 栈空的：没找到；不为空：栈顶就是
+            if (s.empty())
+            {
+                out[i] = -1;
+            }else{
+                out[i] = s.top() - i;
+            }
+
+            // 当前的 i 入栈
+            s.push(i);
+        }
+    }
+```
+
+
+### 4. 无序数组，去除重复值
+
+>1. 要去重
+>1. 重字符串中的字符顺序不能打乱s中字符出现的相对顺序
+>1. 在所有符合上一条要求的去重字符串中，字典序最小的作为最终结果
+
+**字典序：指从前到后比较两个字符串大小的方法。首先比较第1个字符，如果不同则第1个字符较小的字符串更小，一直这样子比较下去。**
+
+```c++
+void rmDuplicate(const string & str){
+
+    // 字符计数
+    map<char,int> count;
+
+    // 储存最终序列，以当前字符，内部是单增的
+    stack<char> s;
+
+    // 是否重复
+    map<char,int> inStack;
+
+    // 计数
+    pair<map<char,int>::iterator,bool> res;
+    for(char ch:str){
+        res = count.insert(pair<char,int>(ch,1));
+        if (res.second == false)
+        {
+            count[ch] += 1;
+        }
+    }
+
+    for(char ch:str){
+        // 取出一个
+        count[ch] --;
+
+        // 栈里面有，去重复
+        if (inStack.count(ch) && inStack[ch] == true)
+        {
+            continue;
+        }
+
+        // 最小字典序：s是单调增加的
+        while (!s.empty() && s.top() > ch)
+        {
+            // 后面已经没了，不能在弹出
+           if (count[s.top()] == 0)
+           {
+               break;
+           }
+
+           inStack[s.top()] = false;
+           s.pop();
+        }
+
+        s.push(ch);
+        inStack[ch] = true;
+    }
+    
+    string out = "";
+    while (!s.empty())
+    {
+        out += s.top();
+        s.pop();
+    }
+    for(int i = out.length() - 1;i >=0;i--){
+        cout << out[i];
+    }
+    cout << endl;
+}
+
+```
+
+- `map<char,int> count`: 记录存在个数
+- `map<char,int> inStack`: **用来去重复**
+- `stack<char> s`: **用于存放结果，并利用单调栈的特性，实现最小字典序**
+
+## 9.11 区间问题
+
+### 1. 解题技巧
+
+1. **端点排序：按照区间起点排序，或者先按照起点升序排序，若起点相同，则按照终点降序排序。** <span style="color:red;font-weight:bold"> 不降序，会出问题 </span>
+    <center>
+    
+    ![descending order](../image/cpp/descendingOrder.jpg)
+    </center>
+
+2. **作图：分别讨论一次涉及的循环区间，有哪些情况，防止漏掉。** <span style="color:red;font-weight:bold"> 区间关系条件得找对。 </span>
+
+### 2. **区间覆盖问题**
+
+<center>
+
+![covered interval](../imag/../image/cpp/CoveredIntervals.png)
+</center>
+
+```java
+    int removeCoveredIntervals(int[][] intvs) {
+        // 按照起点升序排列，起点相同时降序排列
+        Arrays.sort(intvs, (a, b) -> {
+            if (a[0] == b[0]) {
+                return b[1] - a[1];
+            }
+            return a[0] - b[0]; 
+        });
+
+        // 大区间
+        int left = intvs[0][0];
+        int right = intvs[0][1];
+
+        int res = 0;
+        for (int i = 1; i < intvs.length; i++) {
+            int[] intv = intvs[i];
+            // 情况一，找到覆盖区间
+            if (left <= intv[0] && right >= intv[1]) {
+                res++;
+            }
+            // 情况二，找到相交区间
+            if (right >= intv[0] && right <= intv[1]) {
+                left = intv[0];
+                right = intv[1];
+            }
+            // 情况三，完全不相交，更新起点和终点
+            if (right < intv[0]) {
+                left = intv[0];
+                right = intv[1];
+            }
+        }
+
+        return intvs.length - res;
+    }
+```
+### 3. 区间合并
+
+<center>
+
+![merge interval](../image/cpp/mergeInterval.png)
+</center>
+
+```c++
+    struct Interval{
+        int left;
+        int right;
+        Interval(){}
+        Interval(int left, int right){
+            this->left = left;
+            this->right = right;
+        }
+    };
+
+    class Compare{
+    public:
+        bool operator()(const Interval & a, const Interval & b)const{
+            if (a.left < b.left){
+                return true; 
+            }
+            if(a.left == b.left){
+                if (a.right > b.right)
+                {
+                    return true;
+                }
+            }
+            return false; 
+        }
+    };
+
+    vector<Interval> mergeIntervals(vector<Interval>& intervals){
+        // 排序
+        sort(intervals.begin(), intervals.end(),Compare());
+
+        vector<Interval> res;
+        int left = intervals[0].left;
+        int right = intervals[0].right;
+        res.push_back(Interval(left, right));
+
+        for (int i = 1; i < intervals.size(); i++)
+        {
+            int curL = intervals[i].left;
+            int curR = intervals[i].right;
+
+            if (curL >= left && curR <= right) // 包含
+            {
+                continue;
+            }else if(curL >= left && curL <= right && curR > right){ // 相交
+                res.back().right = curR;
+                right = curR;
+            }else if(curL > right){ // 分离
+                left = curL;
+                right = curR;
+                res.push_back(Interval(left, right));
+            } 
+        }
+        return res;
+    }
+```
+
+### 4. 区间交集
+
+<center>
+
+![interstion interval](../image/cpp/intersectingInterval.png)
+</center>
+
+- **归纳交集：` !(l1 > r2 || r1 < l2) `**
+- **归纳指针移动条件：` (r1 < r2) `**
+
+```c++
+    vector< Interval > intersection(vector<Interval>& inter1, vector<Interval>& inter2){
+        // 先排序
+        sort(inter1.begin(), inter1.end(),Compare());
+        sort(inter2.begin(), inter2.end(),Compare());
+
+        // 区间指针
+        int index1=0,index2=0;
+        int left,right;
+        vector<Interval> res;
+
+        // 遍历区间
+        while (index1 < inter1.size() && index2 < inter2.size())
+        {
+            int l1 = inter1[index1].left;
+            int r1 = inter1[index1].right;
+            int l2 = inter2[index2].left;
+            int r2 = inter2[index2].right;
+
+            // 相交
+            if(!( l1 > r2 || r1 < l2 )){
+                left = max(l1,l2);
+                right = min(r1,r2);
+                res.push_back(Interval(left, right));
+            }
+
+            // 移动指针
+            if (r1 < r2)
+            {
+                index1++;
+            }else{
+                index2++;
+            }
+        }
+
+        return res;
+    }
+```
+
+## 9.6 常规二叉树
+
+### 1. 递归的逻辑
+
+- **明确函数的「定义」是什么，然后相信这个定义，利用这个定义推导最终结果，绝不要跳入递归的细节。**
+- **以内部函数调用为分界，上部分是入栈，下部分是出栈**
+
+```Java
+// 定义：count(root) 返回以 root 为根的树有多少节点
+int count(TreeNode root) {
+    // base case
+    if (root == null) return 0;
+    // 自己加上子树的节点数就是整棵树的节点数
+    return 1 + count(root.left) + count(root.right);
+}
+```
+
+### 2. 二叉树的操作逻辑
+
+**先搞清楚当前 root 节点「该做什么」(重点)以及「什么时候做」(前，中，后)，然后根据函数定义递归调用子节点。**
+
+```Java
+/* 二叉树遍历框架 */
+void traverse(TreeNode root) {
+    // 前序遍历
+    traverse(root.left)
+    // 中序遍历
+    traverse(root.right)
+    // 后序遍历
+}
+
+```
+
+### 3. 连通完全二叉树一层的节点
+
+
+
+![connect](../image/connection.png)
+
+```Java
+// 主函数
+Node connect(Node root) {
+    if (root == null) return null;
+    connectTwoNode(root.left, root.right);
+    return root;
+}
+
+// 辅助函数
+void connectTwoNode(Node node1, Node node2) {
+    if (node1 == null || node2 == null) {
+        return;
+    }
+    /**** 前序遍历位置 ****/
+    // 将传入的两个节点连接
+    node1.next = node2;
+
+    // 连接相同父节点的两个子节点
+    connectTwoNode(node1.left, node1.right);
+    connectTwoNode(node2.left, node2.right);
+    // 连接跨越父节点的两个子节点
+    connectTwoNode(node1.right, node2.left);
+}
+```
+
+**「将每两个相邻节点都连接起来」**
+
+### 4. 将二叉树变链表
+
+<center>
+
+![binary to list](../image/binaryToList.jpeg)
+</center>
+
+- 将 root 的左子树和右子树拉平
+- 将 root 的右子树接到左子树下方
+- 将整个左子树作为右子树。
+
+```Java
+// 定义：将以 root 为根的树拉平为链表
+void flatten(TreeNode root) {
+    // base case
+    if (root == null) return;
+
+    flatten(root.left);
+    flatten(root.right);
+
+    /**** 后序遍历位置 ****/
+    // 1、左右子树已经被拉平成一条链表
+    TreeNode left = root.left;
+    TreeNode right = root.right;
+
+    // 2、将左子树作为右子树
+    root.left = null;
+    root.right = left;
+
+    // 3、将原先的右子树接到当前右子树的末端
+    TreeNode p = root;
+    while (p.right != null) {
+        p = p.right;
+    }
+    p.right = right;
+}
+```
+
+
+## 9.7 搜索二叉树 (binary search tree)
+
+1. 对于 BST 的每一个节点 node，左子树节点的值都比 node 的值要小，右子树节点的值都比 node 的值大。
+1. 对于 BST 的每一个节点 node，它的左侧子树和右侧子树都是 BST。
+1. BST 的中序遍历结果是有序的（升序）。
