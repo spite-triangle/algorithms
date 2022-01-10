@@ -511,7 +511,7 @@ $$
 		$$
 	* 右边序列左移：
 		$$
-		Z[x(n + n_0)] = z^{n_0} X(z) - \sum_{i=1}^{n_0} x(i)Z^{n_0-si} \tag{2.6}
+		Z[x(n + n_0)] = z^{n_0} X(z) - \sum_{i=1}^{n_0} x(i)Z^{n_0-i} \tag{2.6}
 		$$
 
 * Z域的尺度变换
@@ -960,7 +960,7 @@ $$
 ![disperse](../image/dsp/disperse.jpg)
 </center>
 
-<span style="color:red;font-weight:bold"> 根据奈奎斯特采样定理：$f_s \ge 2f， \ \omega \le \pi  $ ；数字信号频率：$\pi$ 就对应着模拟信号的最高角频率。</span>
+<span style="color:red;font-weight:bold"> 根据奈奎斯特采样定理： $f_s \ge 2f， \ \omega \le \pi  $ ；数字信号频率：$\pi$ 就对应着模拟信号的最高角频率。</span>
 
 ## 二、滤波器分类
 

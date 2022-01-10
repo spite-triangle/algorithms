@@ -46,9 +46,7 @@ class Application(tk.Frame):
         pass
     
     def __del__(self):
-        # # ensure_ascii：是否只使用ascii编码；indent：指定值后，输出文本更容易读
-        # json.dump(self.fileConfigs,self.configFile,ensure_ascii=False,indent=4)
-        # self.configFile.close()
+
         pass
 
     def creatWidgets(self):
@@ -173,7 +171,7 @@ class Application(tk.Frame):
             if(not fileConfig["dataIsShow"]):
                 continue
 
-            data = pd.read_csv(fileConfig["filePath"],sep=fileConfig["fileSep"],header=None,engine='python')
+            data = pd.read_csv(fileConfig["filePath"],sep=fileConfig["fileSep"],header=None)
             data.columns = fileConfig["fileColumns"]
 
             names.append(fileName)
@@ -280,9 +278,21 @@ class Application(tk.Frame):
             data.columns = fileConfig["fileColumns"]
         except IOError as e:
             messagebox.showerror("Error",str(e))
+
+            if fileName in self.fileConfigs:
+                self.fileConfigs[fileName]["dataIsShow"] =False
+                if not fileName in self.fileList.get(0,'end'):
+                    self.fileList.insert('end',fileName)
+
             return False
         except ValueError as e:
             messagebox.showerror("Error",str(e))
+
+            if fileName in self.fileConfigs:
+                self.fileConfigs[fileName]["dataIsShow"] =False
+                if not fileName in self.fileList.get(0,'end'):
+                    self.fileList.insert('end',fileName)
+                    
             return False
         else:
             # 是否已经记录了该文件

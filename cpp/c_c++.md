@@ -2177,7 +2177,7 @@ void rmDuplicate(const string & str){
 
 2. **作图：分别讨论一次涉及的循环区间，有哪些情况，防止漏掉。** <span style="color:red;font-weight:bold"> 区间关系条件得找对。 </span>
 
-### 2. **区间覆盖问题**
+### 2. 区间覆盖问题
 
 <center>
 
@@ -2333,7 +2333,41 @@ void rmDuplicate(const string & str){
     }
 ```
 
-## 9.6 常规二叉树
+### 5. 给定两矩形，求相交面积
+
+- **排序：矩形可以由两个点对角点表示，首先需要确定两个的位置**
+- **作图：判断相交关系**
+
+```c++
+    // 确保起点在下，终点在上
+    Rect getRect(int x1,int y1,int x2,int y2){
+        Rect A;
+        A.xStart = min(x1,x2);
+        A.yStart = min(y1,y2);
+        A.xEnd = max(x1,x2);
+        A.yEnd = max(y1,y2);
+        return A;
+    }
+
+    int intersectionRect(Rect A,Rect B){
+
+        // 判断是否相交
+        if(!(A.xStart >= B.xEnd || A.xEnd <= B.xStart || A.yEnd <= B.yStart || A.yStart >= B.yEnd)){
+            Rect intersection;         
+            intersection.xStart = max(A.xStart,B.xStart);
+            intersection.yStart = max(A.yStart,B.yStart);
+            intersection.xEnd = min(A.xEnd,B.xEnd);
+            intersection.yEnd = min(A.yEnd,B.yEnd);
+        
+            return (intersection.xEnd - intersection.xStart) * (intersection.yEnd - intersection.yStart);
+        }
+        return 0;
+    }
+
+```
+
+
+## 9.12 二叉树
 
 ### 1. 递归的逻辑
 
@@ -2364,6 +2398,219 @@ void traverse(TreeNode root) {
     // 后序遍历
 }
 
+```
+
+### 3. 二叉树前，中，后序列化与反序列化
+
+- **序列化储存形式：`12#4##3##`,`#`表示空节点**
+- **改变「解析」和「序列化」位置，可以分别实现前，中，后。**
+- <span style="color:red;font-weight:bold"> 深度优先搜索 </span>
+
+```c++
+struct Node{
+    int value;
+    Node* left;
+    Node* right;
+
+    Node(){
+        left = nullptr;
+        right = nullptr;
+    }
+
+    ~Node(){
+        if (left != nullptr)
+        {
+            delete left;
+        }
+
+        if (right != nullptr)
+        {
+            delete right;
+        }
+    }
+};
+
+class BinaryTree{
+private:
+    const string nullStr = "#";
+public:
+    Node* deserialize(queue<string> &nodes){
+
+        // 读取一个节点
+        string str =  nodes.front();
+        nodes.pop();
+
+        // 到头了
+        if (str == nullStr)
+        {
+            return nullptr;
+        }
+
+        // 解析
+        Node* node = new Node();
+        node->value = stoi(str);
+
+        // 解析左右节点
+        node->left = deserialize(nodes); 
+        node->right = deserialize(nodes);
+
+        return node;
+    }
+
+    string serialize(Node* root){
+
+        // 节点到头了
+        if (root == nullptr)
+        {
+            return nullStr;
+        }
+
+        // 序列化
+        string str = to_string(root->value); 
+
+        // 序列化左右
+        str = str + serialize(root->left);
+        str = str + serialize(root->right);
+
+        return str;
+    }
+};
+```
+### 4. 二叉树层级遍历的序列化与反序列化
+
+- **序列化**: <span style="color:red;font-weight:bold"> 递归的作用，1）将父节点输出；2)子节点入队；3）当父节点出队 </span> 
+
+```c++
+    string serializeProcess(Node* root){
+
+        if (nodeQueue.empty())
+        {
+            return "";
+        }
+        
+        // 搜索到头
+        string str = "";
+        if (root == nullptr)
+        {
+            str = nullnode;
+        }else{
+
+            str = to_string(root->value);
+
+            // 子节点入队
+            nodeQueue.push(root->left);
+            nodeQueue.push(root->right);
+        }
+        // 将当前节点弹出
+        nodeQueue.pop();
+        
+        str = str + serializeProcess(nodeQueue.front());
+
+        return str;
+    }
+
+    string serialize(Node* root){
+        while (!nodeQueue.empty())
+        {
+            nodeQueue.pop();
+        }
+
+        // 初始化队列
+        nodeQueue.push(root);
+
+        return serializeProcess(nodeQueue.front());
+    }
+
+```
+
+- **反序列化**：<span style="color:red;font-weight:bold"> 递归的作用，1）父节点出队；2）解析左右子节点；3）子节点入队 </span>
+
+```c++
+    void deserializeProcess(queue<string>& nodes){
+
+        if(nodes.empty()){
+            return;
+        }
+
+        // 取出一个父类
+        Node* parent = nodeQueue.front();
+        nodeQueue.pop();
+
+        string str = "";
+        Node* node = nullptr;
+
+        // 取出左子节点
+        str = nodes.front();
+        nodes.pop();
+
+        if (str == nullnode)
+        {
+            node  = nullptr;
+        }else{
+            node = new Node();
+            node->value = stoi(str);
+            nodeQueue.push(node);
+        }
+        parent->left = node;
+
+        // 取出右子节点
+        str = nodes.front();
+        nodes.pop();
+        if (str == nullnode)
+        {
+            node  = nullptr;
+        }else{
+            node = new Node();
+            node->value = stoi(str);
+            nodeQueue.push(node);
+        }
+        parent->right = node;
+
+
+        deserializeProcess(nodes);
+    }
+
+    Node* deserialize(queue<string>& nodes){
+        while (!nodeQueue.empty())
+        {
+            nodeQueue.pop();
+        }
+
+        if (nodes.front() == nullnode)
+        {
+            return nullptr;
+        }
+
+        Node* root = new Node();
+        root->value = stoi(nodes.front());    
+        nodes.pop();
+
+        nodeQueue.push(root);
+
+        deserializeProcess(nodes);
+        return root;
+    }
+
+```
+
+### 5. 翻转二叉树
+
+```c++
+    void invertTree(Node * root){
+
+        if (root == nullptr)
+        {
+            return;
+        }
+
+        // 交换节点
+        Node* temp = root->left;
+        root->left = root->right; 
+        root->right = temp;
+
+        invertTree(root->left);
+        invertTree(root->right);
+    }
 ```
 
 ### 3. 连通完全二叉树一层的节点
@@ -2437,6 +2684,105 @@ void flatten(TreeNode root) {
 }
 ```
 
+### 5. 构造最大二叉树
+
+<center>
+
+![constructMaximumBinaryTree](../image/cpp/constructMaximumBinaryTree.jpg)
+</center>
+
+- **左右拆分找节点**
+
+```c++
+    Node* constructMaximumBinaryTree(int* nums,int left,int right){
+
+        if(left > right){
+            return nullptr;
+        }
+
+        // 找最大值
+        int max = nums[left];
+        int maxIndex = left;
+        for (int i = left + 1; i <= right; i++)
+        {
+            if (max < nums[i])
+            {
+                max = nums[i];
+                maxIndex = i;
+            }
+        }
+
+        // 生成节点 
+        Node* node = new Node();
+        node->value = max;
+
+        node->left = constructMaximumBinaryTree(nums,left,maxIndex - 1);
+        node->right = constructMaximumBinaryTree(nums,maxIndex + 1,right);
+
+        return node;
+    }
+```
+
+### 6. 通过「前序和中序」遍历结果构造二叉树
+
+<center>
+
+![preorder inorder](../image/cpp/preorder_inorder.jpg)
+</center>
+
+- **递归创建处理`root`节点**
+- **在中序中，找`root`节点位置**
+- **左右拆分，进行递归。** <span style="color:red;font-weight:bold"> 重点为`preorder,inorder`如何拆两半 。</span>
+- **两种序列，传参时，不能搞错了。**
+
+```c++
+    Node* fromPreIn(int* preorder,int preL,int preR,int* inorder,int inL,int inR){
+
+        if (preL > preR || inL > inR)
+        {
+            return nullptr;
+        }
+
+        // 根节点
+        Node* root = new Node();
+        root->value = preorder[preL];
+
+        // 中序中，找root所在位置
+        int index = 0;
+        for ( index = inL; index <= inR; index++)
+        {
+            if(inorder[index] == root->value){
+                break;
+            }
+        }
+
+        // 两个子节点
+        root->left = fromPreIn(preorder,preL + 1,preL + (index - inL),
+                                inorder,inL,index - 1);
+        root->right = fromPreIn(preorder,preL + (index - inL) + 1,preR,
+                                inorder,index + 1,inR);
+
+        return root;
+    }
+
+```
+
+### 6. 通过「中序和后序」遍历结果构造二叉树
+
+<center>
+
+![postorder inorder](../image/cpp/postorder_inorder.jpg)
+</center>
+
+**注意：** `postR - 1`
+
+```c++
+    root->left = fromPostIn(postorder,postL,postL + interval - 1,
+                                    inorder,inL,index - 1); 
+
+    root->right = fromPostIn(postorder,postL+interval,postR - 1,
+                                    inorder,index+1,inR);
+```
 
 ## 9.7 搜索二叉树 (binary search tree)
 

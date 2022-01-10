@@ -1,26 +1,137 @@
 {
-    "test.txt": {
-        "filePath": "F:/workPlace/algorithm/tools/dataPlot/data/test.txt",
+    "yAxis": [
+        "vx",
+        "vy",
+        "vz"
+    ],
+    "xAxis": "t",
+    "out7D_0.txt": {
+        "filePath": "F:/workPlace/graduateProject/trajectory/data/ballistic/out7D_0.txt",
         "fileColumns": [
+            "t",
             "x",
             "y",
-            "z"
+            "z",
+            "v",
+            "t",
+            "p",
+            "d1",
+            "d2",
+            "fx",
+            "fy",
+            "fz",
+            "mpf",
+            "mpa",
+            "mt",
+            "mk"
         ],
-        "fileSep": "\\t",
-        "dataIsShow": true
-    },
-    "test1.txt": {
-        "filePath": "F:/workPlace/algorithm/tools/dataPlot/data/test1.txt",
-        "fileColumns": [
-            "x",
-            "y",
-            "z"
-        ],
-        "fileSep": "\\t",
+        "fileSep": ",",
         "dataIsShow": false
     },
-    "yAxis": [
-        "y"
-    ],
-    "xAxis": "x"
+    "out7D_180.txt": {
+        "filePath": "F:/workPlace/graduateProject/trajectory/data/ballistic/out7D_180.txt",
+        "fileColumns": [
+            "t",
+            "x",
+            "y",
+            "z",
+            "v",
+            "t",
+            "p",
+            "d1",
+            "d2",
+            "fx",
+            "fy",
+            "fz",
+            "mpf",
+            "mpa",
+            "mt",
+            "mk"
+        ],
+        "fileSep": ",",
+        "dataIsShow": false
+    },
+    "out7D_origin.txt": {
+        "filePath": "F:/workPlace/graduateProject/trajectory/data/ballistic/out7D_origin.txt",
+        "fileColumns": [
+            "t",
+            "x",
+            "y",
+            "z",
+            "v",
+            "t",
+            "p",
+            "d1",
+            "d2",
+            "fx",
+            "fy",
+            "fz",
+            "mpf",
+            "mpa",
+            "mt",
+            "mk"
+        ],
+        "fileSep": ",",
+        "dataIsShow": false
+    },
+    "filter.txt": {
+        "filePath": "F:/workPlace/graduateProject/trajectory/data/gps/filter.txt",
+        "fileColumns": [
+            "t",
+            "x",
+            "y",
+            "z",
+            "vx",
+            "vy",
+            "vz"
+        ],
+        "fileSep": ",",
+        "dataIsShow": true
+    },
+    "sim_xyz_vxyz.txt": {
+        "filePath": "F:/workPlace/graduateProject/trajectory/data/gps/sim_xyz_vxyz.txt",
+        "fileColumns": [
+            "t",
+            "x",
+            "y",
+            "z",
+            "vx",
+            "vy",
+            "vz"
+        ],
+        "fileSep": ",",
+        "dataIsShow": true
+    },
+    "sim_xyz_vxyz_v0.2ms_5m.txt": {
+        "filePath": "F:/workPlace/graduateProject/trajectory/data/gps/sim_xyz_vxyz_v0.2ms_5m.txt",
+        "fileColumns": [
+            "t",
+            "x",
+            "y",
+            "z",
+            "vx",
+            "vy",
+            "vz"
+        ],
+        "fileSep": ",",
+        "dataIsShow": true
+    },
+    "out4D.txt": {
+        "filePath": "F:/workPlace/graduateProject/trajectory/data/ballistic/out4D.txt",
+        "fileColumns": [
+            "et",
+            "ex",
+            "ey",
+            "ez",
+            "evx",
+            "evy",
+            "evz",
+            "t",
+            "vx",
+            "vy",
+            "vz"
+        ],
+        "fileSep": ",",
+        "dataIsShow": true
+    }
 }
